@@ -1,13 +1,22 @@
 {
     "name": "makscraft/mv-framework",
     "description": "MV framework",
+    "version": "3.0.0",
     "type": "project",
+    "keywords": ["php", "framework", "mvc", "adminpanel"],
+    "homepage": "https://mv-framework.com",
     "license": "MIT",
     "authors": [
         {
-            "name": "Maksim Zaykov",
-            "email": "8859590+mszaykov@users.noreply.github.com"
+            "name": "Maxim Zaykov"
         }
     ],
-    "require": {}
+    "autoload": {
+        "files": [
+            "config/autoload.php"
+        ]
+    },    
+    "require": {
+        "php": ">=8.0"
+    }
 }
