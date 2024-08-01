@@ -15,7 +15,11 @@
         "files": [
             "config/autoload.php"
         ]
-    },    
+    },
+    "scripts": {
+        "post-package-install": "Post\\Install::run",
+        "post-package-update": "Post\\Update::run"
+    },
     "require": {
         "php": ">=8.0"
     }
