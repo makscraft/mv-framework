@@ -1,0 +1,29 @@
+Deny from all
+
+<Files filemanager.php>
+	Allow from all
+</Files>
+
+<Files search.php>
+	Allow from all
+</Files>
+
+<Files upload.php>
+	Allow from all
+</Files>
+
+<Files user-settings.php>
+	Allow from all
+</Files>
+
+<Files export-csv.php>
+	Allow from all
+</Files>
+
+<Files import-csv.php>
+	Allow from all
+</Files>
+
+<Files migrate.php>
+	Allow from all
+</Files>

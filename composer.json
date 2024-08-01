@@ -1,0 +1,13 @@
+{
+    "name": "makscraft/mv-framework",
+    "description": "MV framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maksim Zaykov",
+            "email": "8859590+mszaykov@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}

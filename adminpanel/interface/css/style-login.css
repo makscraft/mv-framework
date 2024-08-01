@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'Panton-SemiBold';
+  src: url('../fonts/Panton-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{margin: 0; padding: 0; box-sizing: border-box;}
+table{border-collapse: collapse; border-spacing: 0;}
+fieldset, img{border: 0;}
+sup{vertical-align: text-top;}
+sub{vertical-align: text-bottom;}
+input,textarea,select{font-family: inherit; font-size: inherit; font-weight: inherit; border: none; outline: navy;}
+a, img{outline: 0;}
+a{color: #eee; text-decoration: none;}
+a:hover{text-decoration: underline;}
+label{cursor: pointer;}
+li{list-style: none;}
+.hidden{display: none !important;}
+
+html{height: 100%;}
+body{margin: 0; color: #eee; font: 14px "Panton-SemiBold"; position: relative; height: 100%;
+background: #131313 url("../images/login-back.jpg?30") bottom center no-repeat; background-size: cover;}
+
+#container{min-width: 700px; margin: 0 auto; position: relative;}
+#login-area{width: 380px; padding: 130px 0 0 0; margin: 0 auto;}
+#login-middle{padding: 20px 20px 15px 20px;}
+#login-middle p.done{margin: 0 0 12px 0;}
+
+#header{background: url("../images/logo.svg?v30") top left no-repeat; height: 23px; padding: 0 0 0 85px;
+margin: 0 0 25px 0; font-size: 17px; display: flex; align-items: flex-end; line-height: 60%;}
+.header-loading{margin: 17px 0 0 20px !important;}
+#header.error{margin-bottom: 17px;}
+
+div.errors, div.success{background: #f26061; padding: 6px 12px 6px 12px; border-radius: 4px; margin-bottom: 12px;
+width: 280px;}
+div.success{background: #deee85;}
+div.errors p{color: #fff; margin: 0 0 1px 0;}
+div.success p{margin: 0 0 1px 0; color: #333;}
+
+form.login-form div.line{display: flex; align-items: center; margin-bottom: 10px;}
+form.login-form div.line div.name{width: 100px; margin-right: 10px}
+form.login-form div.line input[type='text'], form.login-form div.line input[type='password']{height: 26px; 
+padding: 5px 10px; border-radius: 4px; width: 170px; background: #eee}
+form.login-form div.line div.captcha{display: flex; flex-direction: column; align-items: flex-start;}
+form.login-form div.line div.captcha img{border-radius: 4px; margin-bottom: 5px;}
+form.login-form input.submit, a.submit{background: #918b8b; position: relative; cursor: pointer; border-radius: 4px; 
+color: #fff; width: auto; padding: 6px 30px; outline: none;}
+a.submit{text-decoration: none;}
+form.login-form div.submit{width: 280px; display: flex; justify-content: flex-end; margin-bottom: 15px;}
+form.login-form input.submit:hover, a.submit:hover{background: #807979;}
+form.login-form input.submit:active{position: relative; top: 1px; left: 1px;}
+form.login-form div.remind{margin: 0 0 12px 0;}
+
+a.error-link{display: inline-block; margin: 10px 0 0 0;}
+
+#remember{display: flex; align-items: center; margin-bottom: 20px; padding-top: 5px;}
+#remember-login{outline: none; border: none; width: auto; bottom: 0; position: relative;}
+#remember label{cursor: pointer; margin: 0 0 0 8px; position: relative; bottom: -1px;}
+
+#select-login-region{border-radius: 3px; padding: 3px 5px;}
+#select-login-region option{padding-left: 5px; padding-right: 5px;}
+
+@media all and (max-width: 1400px)
+{
+    #login-area{padding-top: 90px;}
+}

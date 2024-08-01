@@ -1,0 +1,49 @@
+#filemanager-form{clear:both; position: relative;}
+#files-table{float: left; width: 70%; padding: 0;}
+#files-table div.column-inner{margin: 0 20px 0 0; position: relative;}
+#path{margin: -5px 0 20px -3px;}
+
+#files-params{float: left; width: 30%; padding-top: 8px;}
+#files-params table{width: 100%;}
+#files-params table td{padding: 2px 0 1px 4px;}
+#file-image{height: 250px; border-bottom: 1px solid #a7a6a6; text-align: center;}
+#file-image img{max-width: 90%}
+#file-data table td.name{width: 190px}
+#file-data table td.value{word-wrap: break-word; overflow: hidden;}
+
+#navigation{padding: 20px 0 15px 0;  width: 100%; float: left;}
+#navigation div.buttons{width: 50%; float:left; margin-bottom: 15px;}
+#navigation div.pager-limit{width: 50%; float: left; padding: 0;}
+#navigation div.pager{clear:both; padding: 0;}
+
+#upload-file{width: 50%; float: left;}
+input.borderd{border: 1px solid #918b8b; padding: 4px 5px; width:70%; border-radius: 4px;}
+#create-folder{width: 50%; float: left;}
+#upper-folder{text-transform: lowercase;}
+
+#upload-file h3, #create-folder h3, #files-params h3{font-weight: normal; font-size: 20px; margin: 0 0 15px 0;}
+#upload-file p, #create-folder p{padding: 15px 0 0 0;}
+.model-table.filemanager td{padding: 5px 4px;}
+
+#filemanager-form span.folder, #filemanager-form span.folder-up{display: block; width: 17px; height: 16px; margin: 0;}
+#filemanager-form span.folder{background: url("../images/icon-folder.svg") no-repeat;}
+#filemanager-form span.folder-up{background: url("../images/icon-folder-up.svg") no-repeat;}
+
+#filemanager-menu{display:none;}
+.context-menu{position: absolute; width: 135px; z-index: 99999; border: solid 1px #918b8b; background: #f6f5f5; 
+padding: 0px; margin:0px; display:none; box-shadow: 0 0 9px #999; -webkit-box-shadow: 0 0 9px #999; 
+-moz-box-shadow: 0 0 9px #999;  padding: 5px 0;}
+.context-menu a{color: #333; text-decoration: none; display: block; line-height: 20px; height: 20px;
+ outline: none; padding: 3px 5px 2px 5px; padding-left: 15px;}
+
+.context-menu li{list-style: none; padding: 0px; margin: 0px;}
+.context-menu li.hover a{background-color: #e3e0e0;}
+.context-menu li.disabled a{color: #999; cursor: default;}
+.context-menu li.hover.disabled a{background-color: transparent;}
+.context-menu li.separator{border-top: solid 1px #ccc;} 
+
+.file-rename-cell{position: relative; display: block;}
+div.rename-wrapper{position: relative; height: 22px;  display: inline;}
+#file-rename{border: 1px solid #918b8b; padding: 4px 5px; width: 250px; border-radius: 3px; margin: 14px 0 5px 0;}
+a.cut-element{color: #a7a6a6 !important;}
+table.model-table.filemanager{border-bottom: 1px solid #918b8b;}

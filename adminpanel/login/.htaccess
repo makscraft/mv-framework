@@ -1,0 +1,13 @@
+Allow from all
+
+<Files captcha.php>
+	Deny from all
+</Files>
+
+<Files login-header.php>
+	Deny from all
+</Files>
+
+<Files remind-form.php>
+	Deny from all
+</Files>

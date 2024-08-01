@@ -1,0 +1,23 @@
+
+body{background: #333 url("images/background.jpg") bottom center no-repeat;}
+
+#header{background: url("images/header.png") repeat;}
+#header-search input.search-button{background: url("images/search.jpg") top repeat-x;}
+#models-buttons span, #user-settings li a{color: #f3b283;}
+
+table.models-list-table td a{color: #fff;}
+table.models-list-table td a:hover{color: #222; background: #f3b283;}
+
+#models-list table.models-list-table td a{color: #222;}
+#models-list table.models-list-table td a:hover{background: #f3b283;}
+
+#models-buttons span{background: url("images/arrow.png") right center no-repeat;}
+
+#index-icons ul li{background: url("images/block.png") repeat;}
+#index-icons ul li:hover{background: url("images/block-hover.png") repeat;}
+#index-icons ul li a{color: #333;}
+#index-icons ul li:hover a, #index-icons ul li:hover a span{color: #fff;}
+
+.button-create{background: url("images/search.jpg") top repeat-x;}
+
+div.footer-title a{color: #fff;}

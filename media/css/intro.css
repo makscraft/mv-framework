@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'PantonSemiBold';
+    src: url('../../adminpanel/interface/fonts/Panton-SemiBold.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{margin: 0; padding: 0; box-sizing: border-box;}
+html{background: url(../images/intro.png) top right no-repeat;}
+body{font: 16px/140% 'PantonSemiBold'; padding-bottom: 100px;}
+pre{white-space: break-spaces;}
+header{height: 70px; background: #333; display: flex; align-items: center; color: #fff; padding: 0 3%;
+margin-bottom: 30px;}
+header a{color: #fff; text-decoration: none;}
+header ul.menu{display: flex; width: 100%;}
+header ul.menu li{margin: 0 2% 0 0; list-style: none;}
+header ul.menu li.active a{color: #f26061;}
+
+section.content{margin: 0 3%; max-width: 800px;}
+section.content a{color: #1464ba; text-decoration: none;}
+section.content a:hover{text-decoration: underline;}
+section.content h1, section.content h2, section.content h3{margin-bottom: 15px;}
+section.content h1{font-size: 30px; line-height: 40px;}
+section.content h2{font-size: 25px; line-height: 20px; margin-top: 30px;}
+section.content h3{font-size: 20px; line-height: 20px; margin-top: 30px;}
+section.content ul, section.content ol{margin-bottom: 20px;}
+section.content li{margin-bottom: 10px; list-style-position: inside;}
+section.content p{margin-bottom: 15px;}
+
+form div.field-wrapper{margin-bottom: 15px;}
+form div.field-name{margin-bottom: 3px;}
+form input[type='text'], form select, form textarea{border: 1px solid #777; border-radius: 3px; padding: 7px 10px;
+font-size: 16px;}
+form input[type='text'], form select{width: 300px;}
+form textarea{width: 600px;}
+form button{border: none; border-radius: 3px; cursor: pointer; font-size: 16px; background: #f26061;
+color: #fff; padding: 10px 40px;}
+form input[type='checkbox']{margin-right: 3px;}
+form label{cursor: pointer;}
+form div.buttons{padding-top: 20px;}
+form .image-input{width: 300px; padding: 10px 0;}
+form .file-params{margin-bottom: 15px;}
+form .file-params span.delete, form .multiple-files-data span.delete{margin-left: 12px; color: #1464ba; cursor: pointer;}
+form .multiple-files-data{width: 600px;}
+form .multiple-files-data div.file-element{margin-bottom: 5px;}
+form .multiple-files-data div.file-input{margin-top: 15px;}
+form .form-multi-images-wrapper{display: grid; grid-template-columns: 150px 150px 150px; gap: 15px; margin-bottom: 20px;
+width: fit-content; padding: 15px 0;}
+form .form-multi-images-wrapper > div{display: flex; flex-direction: column; align-items: center;}
+form .form-multi-images-wrapper > div > img{height: 100px; margin-bottom: 3px;}
+form .form-multi-images-wrapper span.delete{color: #1464ba; cursor: pointer;}
+
+.hidden{display: none;}
+.error-field > *{border-color: #f26061 !important; background-color: #f9f3d7;}
+div.form-errors, div.form-success{margin: 15px 0; padding: 5px 20px; width: 600px; border-radius: 3px;}
+div.form-errors p, div.form-success p{margin: 5px 0; padding-left: 5px;}
+div.form-errors{background: #f9f3d7; color: #f26061;}
+div.form-success{background: #deee85;}

@@ -1,0 +1,25 @@
+
+body{background: #333 url("images/background.jpg") bottom center no-repeat;}
+
+#header{background: url("images/header.png") repeat;}
+#header-search input.search-button{background: url("images/search.jpg") top repeat-x;}
+#models-buttons span, #user-settings li a{color: #f26061;}
+
+table.models-list-table td a{color: #fff;}
+table.models-list-table td a:hover{color: #333; background: #ddd;}
+
+#models-list{background: #4d9f97;}
+#models-list table.models-list-table td a{color: #fff;}
+#models-list table.models-list-table td a:hover{background-color: #eee; color: #333;}
+#models-buttons span{background: url("images/arrow.png") right center no-repeat;}
+
+#index-icons ul li{background: url("images/block.png") repeat;}
+#index-icons ul li:hover{background: url("images/block-hover.png") repeat;}
+#index-icons ul li a{color: #333;}
+#index-icons ul li:hover a, #index-icons ul li:hover a span{color: #fff;}
+
+.button-light, .button-list, #show-filters{background-color: #4d9f97;}
+.button-create{background: url("images/search.jpg") top repeat-x;}
+span.bool-field.bool-true .slider, label.switch input:checked + .slider{background-color: #4d9f97;}
+
+div.footer-title a{color: #fff;}

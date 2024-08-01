@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Panton-SemiBold';
+    src: url('../fonts/Panton-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}			
+
+*{margin: 0; padding: 0; box-sizing: border-box;}
+body.debug-page{font: 14px/140% 'Panton-SemiBold'; background: #eee;}
+#debug-area .inner{width: 92%; margin: 0 auto;}
+#debug-area header{height: 70px; background: #333; margin-bottom: 30px; color: #fff;}
+#debug-area header div.inner{display: flex; align-items: center; height: 100%;}
+#debug-area header div.inner div.version{margin-left: 5%;}
+#debug-area header div.inner div.version-initial{margin-left: auto;}
+
+#debug-area section.content h1{font-size: 30px; margin-bottom: 25px;}
+#debug-area section.content h3{font-size: 20px; margin-bottom: 20px; font-weight: normal; line-height: 27px; 
+max-width: 1300px; padding: 22px; background: #ddd; border-radius: 5px;}
+#debug-area section.content pre{margin-bottom: 30px;}
+#debug-area section.content pre.code{background: #333; color: #fff; padding: 20px; line-height: 22px;}
+#debug-area section.content pre.code code{color: #f26061; display: block; background: #444;}
+#debug-area section.content pre.code span.line{margin-right: 10px; padding: 0 5px;}
+#debug-area section.content pre.backtrace{max-width: 1400px; white-space: pre-wrap;}
+
+.mv-debug-panel{min-height: 50px; background: #333; color: #fff !important; position: fixed; width: 97%; bottom: 15px;
+display: flex; align-items: center; z-index: 100000000; left: 1.5%; padding: 10px 1%; border-radius: 5px; 
+font: 14px/140% 'Panton-SemiBold'; overflow: visible; box-sizing: border-box; transition: all 0.7s ease;}
+.mv-debug-panel > *{margin-right: 3%; color: #fff !important; width: auto;}
+.mv-debug-panel > img{width: 40px; cursor: pointer;}
+.mv-debug-panel > div.sql-section{white-space: nowrap;}
+.mv-debug-panel > div.sql-section span.number{margin-right: 10px; color: #fff !important;}
+.mv-debug-panel > div:last-child{margin: 0 0 0 auto;}
+.mv-debug-panel .mv-debug-panel-button{background: #918b8b; cursor: pointer; border-radius: 4px; color: #fff; 
+outline: none; padding: 2px 10px; white-space: nowrap;}
+.mv-debug-panel .mv-debug-panel-button:hover{background: #807979;}
+.mv-debug-panel.wrapped{width: auto; padding: 10px;}
+.mv-debug-panel.wrapped > div{display: none;}
+#mv-debug-panel-queries-list{max-height: 300px; overflow-y: auto; position: absolute; background: #444;
+bottom: 53px; border-radius: 5px; padding: 15px 1%; width: 100%; left: 0; display: none;}
+#mv-debug-panel-queries-list.active{display: block;}
+#mv-debug-panel-queries-list div{margin-bottom: 5px; display: flex; width: 100%;}
+#mv-debug-panel-queries-list div:last-child{margin: 0}
+#mv-debug-panel-queries-list div span{margin-right: 10px; min-width: 20px; display: inline-block; color: #aaa !important;}
+#mv-debug-panel-queries-list div div{word-wrap: break-word; line-break: anywhere; color: #fff !important;}
+
+@media all and (max-width: 1300px)
+{
+    .mv-debug-panel > *{margin-right: 2%;}
+    .mv-debug-panel > div.sql-section{white-space: normal;}
+    #mv-debug-panel-queries{margin: 3px 0 0 0; display: inline-block;}
+}
