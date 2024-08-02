@@ -19,7 +19,8 @@
     "scripts": {
         "post-package-install": "Post\\Install::run",
         "post-package-update": "Post\\Update::run",
-        "post-root-package-install": "Post\\Root\\Install::run"
+        "post-root-package-install": "ProjectInstalled\\Main::run",
+		"post-create-project-cmd": "ProjectCreeted\\Main::run"
     },
     "require": {
         "php": ">=8.0"
