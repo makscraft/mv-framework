@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Multi images datatype class. Keeps images gallery in the one SQL table cell. 
  */
@@ -400,4 +400,3 @@ class MultiImagesModelElement extends CharModelElement
 		$this ->  error = implode('<br>', $errors);
 	}
 }
-?>

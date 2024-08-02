@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class for authorization of users in admin panel.
  * Also contains methods for auto login and recovering admin's password.
@@ -353,4 +353,3 @@ class Login
 		return false;
 	}
 }
-?>

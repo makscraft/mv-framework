@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Manages versions history of records in model tables.
  * Keeps copies of records values, including many-to-many.
@@ -330,4 +330,3 @@ class Versions
 		return preg_replace("/page=(\d+)/", "versions-page=$1", $html);
 	}
 }
-?>

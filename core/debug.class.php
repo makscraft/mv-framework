@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class for detecting bugs, time measuring and browser detection.
  * Also displays errors during the work code.

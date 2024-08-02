@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Model class of admin panel users.
  * Also manages users rights which allow to access admin panel models.
@@ -308,4 +308,3 @@ class Users extends Model
 		return $this;
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Base class of any model (regular or simple typed).
  * Contains main objects and properties.
@@ -954,4 +954,3 @@ abstract class ModelBase extends ModelInitial
 			return isset($this -> paginator);
 	}
 }
-?>

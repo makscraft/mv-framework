@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * SQLite database engine adapter.
  */
@@ -257,4 +257,3 @@ class SqliteAdapter extends DbAdapter
 		return "ALTER TABLE `".$model -> getTable()."` RENAME COLUMN `".$old_column."` TO `".$new_column."`;";
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Main parent class for all regular models.
  * Many methods and vars are extended from parent classes.
@@ -2314,4 +2314,3 @@ class Model extends ModelBase
 		}
 	}
 }
-?>

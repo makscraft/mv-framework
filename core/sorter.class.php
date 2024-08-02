@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class for sorting the rows when getting results from SQL queries.
  * Takes values from GET, checks them and passes into SQL query.
@@ -353,4 +353,3 @@ class Sorter
    	   	return $html;
    	}
 }
-?>

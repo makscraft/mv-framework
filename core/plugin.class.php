@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Parent base class for MV plugins.
  * Plugins must be activated by adding into array in config/plugins.php.
@@ -62,4 +62,3 @@ abstract class Plugin extends ModelInitial
 			return $this -> runPaginator($arguments[0], $arguments[1], $arguments[2] ?? null);
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<? 
+<?php 
 /**
  * Displays the menus in admin panel, loading language parts via I18n class.
  */
@@ -156,4 +156,3 @@ class Menu
 		return $models;
 	}
 }
-?>

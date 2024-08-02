@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Char datatype class, parent for many other datatypes.
  */
@@ -166,4 +166,3 @@ class CharModelElement extends ModelElement
 		return "<input class=\"text\" type=\"text\" name=\"".$this -> name."\" value=\"".$value."\" />\n";
 	}
 }
-?>

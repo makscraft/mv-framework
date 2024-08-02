@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Routing manager, checks the requested url, analyzes it and includes needed template (view) to display the page.
  * Also removes dangerous symbols and GET params from the url.
@@ -394,4 +394,3 @@ class Router
 			return false;		
    	}
 }
-?>

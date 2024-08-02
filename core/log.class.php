@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Logs manager class. 
  * Also saves users operations into history in admin panel.
@@ -163,4 +163,3 @@ class Log extends Model
 		return $template.$number.'.log';
 	}
 }
-?>

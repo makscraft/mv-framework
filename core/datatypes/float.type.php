@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Float datatype class. Most properties are inherited from Int datatype.
  */
@@ -13,4 +13,3 @@
 		return $this -> value;
 	}
 } 
-?>

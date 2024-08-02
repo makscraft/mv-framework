@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * File datatype class. Manages files inputs and file uploading.
  */
@@ -385,4 +385,3 @@ class FileModelElement extends CharModelElement
 		return $this;
 	}
 }
-?>

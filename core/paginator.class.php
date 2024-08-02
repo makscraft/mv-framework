@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class for splitting the long lists of records into pages.
  * Creates parts of SQL queries to use in LIMIT constructions.
@@ -485,4 +485,3 @@ class Paginator
 			   return $this -> getLast();
 	   }
 }
-?>

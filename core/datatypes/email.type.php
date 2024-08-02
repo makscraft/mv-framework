@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Email datatype class. Most properties are inherited from Char datatype.
  */
@@ -18,4 +18,3 @@
 		return $this;
 	}
 } 
-?>

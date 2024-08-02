@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Main front object of application. Contains all common variables, models, plugins and pathes.
  * Accessors create models objects on the fly, by __call() method.
@@ -236,4 +236,3 @@ class Builder
 		}
 	}
 }
-?>

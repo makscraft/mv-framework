@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Filters manager in admin panel and front of application.
  * Collects data from GET and composes SQL query fragment as a  result.
@@ -1102,4 +1102,3 @@ class Filter
    		return ($this -> ifApplied($field) && $this -> getValue($field) != '*' && $this -> getValue($field) != '-');
    	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class for sending email messages.
  */
@@ -240,4 +240,3 @@ class Email
 		return $message;
 	}
 }
-?>

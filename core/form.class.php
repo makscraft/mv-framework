@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * This class is a forms constructor and processor.
  * Creates form from model or from given array of fields.
@@ -1582,4 +1582,3 @@ class Form
 		return $this;
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Parent datatype class. Numeric datatype, which helps to create tree structure inside a model.
  */
@@ -449,4 +449,3 @@ class ParentModelElement extends EnumModelElement
 					  			   WHERE `".$this -> name_field."`=".$db -> secure($name));
 	}
 }
-?>

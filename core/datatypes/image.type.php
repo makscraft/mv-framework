@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Image datatype class. Manages images inputs and uploading.
  */ 
@@ -66,4 +66,3 @@ class ImageModelElement extends FileModelElement
 		return $html;
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Simple type of model, managing key / value storage.
  * Usually this type of model keeps settings and other data 
@@ -320,4 +320,3 @@ class ModelSimple extends Model
 			Debug :: displayError("Call to undefiend method '".$method."' of simple model '".get_class($this)."'.");			
 	}
 }
-?>

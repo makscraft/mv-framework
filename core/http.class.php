@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class for processing http requests and responses.
  */
@@ -136,4 +136,3 @@ class Http
         setcookie($key, $value, $expires, $path, $domain, self :: isHttps(), $http_only);
     }
 }
-?>

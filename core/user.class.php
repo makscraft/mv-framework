@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Manages the users and their rights in admin panel.
  * Main class for checking the authorization of users in MV admin area.
@@ -248,4 +248,3 @@ class User
 		return $html."</select>\n";
 	}
 }
-?>

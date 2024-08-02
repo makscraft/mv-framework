@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Url datatype class, operates with links slugs. 
  * Most properties are inherited from Char datatype.
@@ -32,4 +32,4 @@ class UrlModelElement extends CharModelElement
 		return $html;
 	}
 }
-?>
+

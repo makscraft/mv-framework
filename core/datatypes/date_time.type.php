@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Datetime datatype class, connected with I18n class.
  */
@@ -102,4 +102,3 @@ class DateTimeModelElement extends DateModelElement
 		return $html.$this -> addHelpText();
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Main class for records management (similar to Active Record).
  * Record does not extend the methods of model, it uses only own methods.
@@ -325,4 +325,3 @@ class Record extends Content
 		}
 	}
 }
-?>

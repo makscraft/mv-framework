@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class for managing database modifications from admin panel.
  */
@@ -232,4 +232,3 @@ class Migrations
 			$this -> db -> query($sql);
 	}
 }
-?>

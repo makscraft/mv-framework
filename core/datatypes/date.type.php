@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Date datatype class, parent for datetime datatype.
  * Connected with I18n class.
@@ -201,4 +201,3 @@ class DateModelElement extends CharModelElement
 		return (get_class($this) == "DateModelElement") ? $html.$this -> addHelpText() : $html;
 	}
 }
-?>

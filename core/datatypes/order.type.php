@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Order datatype class. Numeric datatype, which keeps positions of records in SQL table.
  */
@@ -51,4 +51,3 @@ class OrderModelElement extends IntModelElement
 		
 	}
 }
-?>

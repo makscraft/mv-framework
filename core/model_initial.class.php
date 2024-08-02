@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Initial class for models, contains the most basic objects like Registry and Database manager.
  * Also defines methods to process SQLcondtions and retreive records from the database.

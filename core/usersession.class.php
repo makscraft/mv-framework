@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Manages sessions data of admministrators during the work in admin panel.
  * Contains some methods to increase the security of sessions.
@@ -133,4 +133,3 @@ class UserSession
 		return $users_ids;
 	}
 }
-?>

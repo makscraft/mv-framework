@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Integer datatype class. Numeric datatype with own properties.
  */
@@ -62,4 +62,3 @@
 		return $html;
 	}
 } 
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Base abstract datatype, parent for all child types.
  * Contains general basic properties and accessors.
@@ -301,4 +301,3 @@ abstract class ModelElement
 		return '';
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Enum datatype class. Has a list of values and work with database.
  */
@@ -585,4 +585,3 @@ class EnumModelElement extends ModelElement
 		return $html;
 	}
 }
-?>

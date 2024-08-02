@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Many to one datatype class. Virtual datatype, created to count values of enum type.
  */  
@@ -106,4 +106,4 @@ class ManyToOneModelElement extends ModelElement
 		return IntModelElement :: createAdminFilterHtml($this -> name, $data);
 	}
 }
-?>
+

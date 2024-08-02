@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Many to many datatype class. Works with values in linking tables in database.
  */ 
@@ -485,4 +485,3 @@ class ManyToManyModelElement extends ModelElement
 		return $this;
 	}
 }
-?>

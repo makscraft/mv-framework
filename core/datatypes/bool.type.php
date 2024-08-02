@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Bool datatype class. Stores value in database as 0/1 integer value.
  */
@@ -82,4 +82,3 @@ class BoolModelElement extends ModelElement
 		return Filter :: createSelectTag($name, $options, $value, 'backend');
 	}
 }
-?>

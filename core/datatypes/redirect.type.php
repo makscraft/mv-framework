@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Redirect datatype class. Most properties are inherited from Char datatype.
  */
@@ -19,4 +19,3 @@ class RedirectModelElement extends CharModelElement
 		return $this;
 	}
 }
-?>

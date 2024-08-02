@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Group datatype class. Contains links to the records of the same model.
  */
@@ -219,4 +219,3 @@ class GroupModelElement extends ModelElement
 		return $options_xml;
 	}
 }
-?>

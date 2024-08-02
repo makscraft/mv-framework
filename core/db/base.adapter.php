@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Base abstract adapter for SQL engines.
  */
@@ -21,4 +21,3 @@ abstract class DbAdapter
 		return time();
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Cache manager for media files (css and javascript).
  * Keeps data in files in ~/userfiles/cache/media folder.

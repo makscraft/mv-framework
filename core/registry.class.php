@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Keeps all configurations of application and current version of MV core.
  * Works on the singleton pattern.
@@ -355,4 +355,3 @@ class Registry
 		return self :: $settings['Mode'] === 'production';
 	}
 }
-?>

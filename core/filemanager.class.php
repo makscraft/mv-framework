@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * File manager class of admin panel of MV framework.
  * Operates with files and folders, can also cleanup old useless files. 
@@ -783,4 +783,3 @@ class Filemanager
 		}		
 	}
 }
-?>

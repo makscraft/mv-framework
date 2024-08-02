@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Resizes and/or cuts the images to needed size for thumbnails.
  * Calculates the ratio of width and height.
@@ -346,4 +346,3 @@ class Imager
       $this -> saveNewImage($image_params["type"], $image, $file_name);
    }
 }
-?>

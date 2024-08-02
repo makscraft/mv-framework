@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Main object in admin panel. 
  * Contains object of current model, settings and other tools.
@@ -689,4 +689,3 @@ class System
 		return $result;
 	}
 }
-?>

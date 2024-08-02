@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Parent for Record class, contains base methods for child class.  
  */
@@ -178,4 +178,3 @@ class Content
 			return "<p>".str_replace(['<br>', '</br>'], "</p>\n<p>", nl2br($this -> content[$field]))."</p>\n";
 	}	
 }
-?>

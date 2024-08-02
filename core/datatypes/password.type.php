@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Password datatype class. Most properties are inherited from Char datatype.
  */
@@ -40,4 +40,3 @@ class PasswordModelElement extends CharModelElement
         return str_replace("type=\"text\"", "type=\"password\"",  parent :: displayHtml());
     }
 }
-?>

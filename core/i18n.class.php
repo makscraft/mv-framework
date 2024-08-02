@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Localization manager class.
  * Works with translations, dates and numbers.
@@ -600,4 +600,3 @@ class I18n
 		Http :: setCookie($key, $region, ['expires' => $time, 'path' => Registry :: get('AdminPanelPath')]);
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Garbage model contains deleted records of all models in admin panel.
  * Records go to garbage after delete in admin panel or by delete() method of model from frontend.
@@ -163,4 +163,3 @@ class Garbage extends Model
 		return (bool) count($ids);
 	}
 }
-?>

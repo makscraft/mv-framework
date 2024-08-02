@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Phone datatype class. Most properties are inherited from Char datatype.
  */
@@ -20,4 +20,3 @@ class PhoneModelElement extends CharModelElement
 		return $this;
 	}
 }
-?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Static methods, helpers to use anywhere inside the project.
  */
@@ -498,4 +498,3 @@ class Service
 		return str_replace('*', '', implode('', $signs)).implode('', $number);
 	}
 }
-?>

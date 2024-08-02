@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * MySQL database engine adapter.
  */
@@ -242,4 +242,3 @@ class MysqlAdapter extends DbAdapter
 		return "ALTER TABLE `".$model -> getTable()."` DROP INDEX `".$name."`;\n";
 	}
 }
-?>

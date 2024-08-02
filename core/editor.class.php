@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * WW editor class, created to add editor to the textareas in admin panel.
  */
@@ -143,4 +143,3 @@ class Editor
 		file_put_contents($path, json_encode($json));
    }
 }
-?>

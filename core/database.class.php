@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Class contains all base methods related to database queries.
  * Uses PDO driver and works on singleton pattern.
@@ -305,4 +305,3 @@ class Database
 		return $tables;
 	}
 }
-?>
