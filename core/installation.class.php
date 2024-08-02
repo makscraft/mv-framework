@@ -1,4 +1,4 @@
-<?
+<?php
 class Installation
 {
     static public function finish()
