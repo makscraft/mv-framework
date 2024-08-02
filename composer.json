@@ -17,10 +17,7 @@
         ]
     },
     "scripts": {
-        "post-package-install": "Post\\Install::run",
-        "post-package-update": "Post\\Update::run",
-        "post-root-package-install": "ProjectInstalled\\Main::run",
-		"post-create-project-cmd": "ProjectCreeted\\Main::run"
+	"post-create-project-cmd": "\\Installation::finish"
     },
     "require": {
         "php": ">=8.0"
