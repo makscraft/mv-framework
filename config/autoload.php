@@ -130,6 +130,7 @@ spl_autoload_register(function($class_name)
 {	
 	$mvAutoloadData = $GLOBALS['mvAutoloadData'];
 	$mvSetupSettings = $GLOBALS['mvSetupSettings'];
+	$class_lower = strtolower($class_name);
 	
 	if(strpos($class_name, 'ModelElement') !== false || strpos($class_lower, '_model_element') !== false)
 	{
