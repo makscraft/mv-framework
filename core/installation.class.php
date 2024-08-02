@@ -3,7 +3,8 @@ class Installation
 {
     static public function finish()
     {
-        echo __FUNCTION__;
+        //echo __FUNCTION__;
+        echo Service :: strongRandomString(40);
     }
 
     static public function postAutoloadDump()
