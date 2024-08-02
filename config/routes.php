@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Main routing file of the MV application.
  * Views files must be located in 'views' directory.

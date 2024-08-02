@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * MV - content management framework for developing internet sites and applications.
  * Released under the terms of MIT License.
@@ -20,4 +20,3 @@ include $mv -> router -> defineRoute();
 
 //Shows debug panel at the bottom if the 'DebugPanel' setting is set to true
 $mv -> displayDebugPanel();
-?>
