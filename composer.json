@@ -17,7 +17,8 @@
         ]
     },
     "scripts": {
-	"post-create-project-cmd": "\\Installation::finish"
+	"post-create-project-cmd": "\\Installation::finish",
+	"post-autoload-dump": \\Installation::postAutoloadDump
     },
     "require": {
         "php": ">=8.0"
