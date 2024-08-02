@@ -1,12 +1,12 @@
 <?
 class Installation
 {
-    public function finish()
+    static public function finish()
     {
         echo __FUNCTION__;
     }
 
-    public function postAutoloadDump()
+    static public function postAutoloadDump()
     {
         echo __FUNCTION__;
     }
