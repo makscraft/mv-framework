@@ -18,20 +18,29 @@ class Installation
 
     static public function displayErrorMessage(string $message)
     {
-        echo PHP_EOL."\033[41m ".$message." \033[0m".PHP_EOL.PHP_EOL;
+        echo "\033[41m ".$message." \033[0m".PHP_EOL.PHP_EOL;
     }
 
     static public function displaySuccessMessage(string $message)
     {
-        echo PHP_EOL."\033[92m ".$message." \033[0m".PHP_EOL.PHP_EOL;
+        echo "\033[92m".$message." \033[0m".PHP_EOL;
     }
 
     static public function displayDoneMessage(string $message)
     {
-        echo PHP_EOL."\033[42m ".$message." \033[0m".PHP_EOL.PHP_EOL;
+        echo "\033[42m ".$message." \033[0m".PHP_EOL.PHP_EOL;
     }
 
     static public function setEnvFileParameter(string $key, string $value)
+    {
+        $env_file = __DIR__.'/../.env';
+        $env = file_get_contents($env_file);
+
+        $env = preg_replace('/'.$key.'=[\/\w]*/ui', $key.'='.trim($value), $env);
+        file_put_contents($env_file, $env);
+    }
+
+    static public function createFolderIfNotExists(string $folder)
     {
 
     }
@@ -57,57 +66,150 @@ class Installation
         echo "\033[92m index.php file has been configurated\033[0m\r\n";
     }
 
-    static public function configureFolder(Event $event)
+    static public function configureFolder()
     {
-        $arguments = $event -> getArguments();
-        $folder = $arguments[0] ?? '';
-        $folder = trim($folder);
+        $directory = '';
 
-        if($folder === '')
-        {
-            echo "\033[44mError! You need to pass the project folder name like -- /my/application/ or -- myapp (or simply -- /).\033[0m\r\n";
-            return;
-        }
-        else if(strpos($folder, '.') !== false)
-        {
-            echo "Error! Project folder name may not contain '.' character.\033[0m\r\n";
-            return;
-        }
+        do{
+            $folder = self :: typePrompt('Please type the name of project subdirectory or press Enter to skip [default is /]');
+            $folder = trim($folder);
+            $folder = $folder === '' ? '/' : $folder;
+            $error = '';
+            
+            if(!preg_match('/^[\/\w]+$/', $folder))
+                $error = 'Error! You need to enter the project subdirectory name like /my/application/ or myapp (or simply /).';
+            else if(strpos($folder, '.') !== false)
+                $error = 'Error! Project subdirectory name may not contain \'.\' character.';
+
+            if(!$error && !preg_match('/^\//', $folder))
+                $folder = '/'.$folder;
+    
+            if(!$error && !preg_match('/\/$/', $folder))
+                $folder = $folder.'/';
+
+            $root = realpath(__DIR__.'/../..');
+            $directory_check = realpath(__DIR__.'/../../'.$folder);
         
-        if(!preg_match('/^\//', $folder))
-            $folder = '/'.$folder;
+            if(!$error && !is_dir($directory_check))
+            {
+                if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+                    $folder = str_replace('/', '\\', $folder);
+                
+                $error = 'Error! Project directory does not exist: "'.$root.$folder.'".';
+            }
 
-        if(!preg_match('/\/$/', $folder))
-            $folder = $folder.'/';
+            if($error)
+                self :: displayErrorMessage($error);
+            else
+            {
+                $directory = $folder;
+                break;
+            }
+        }
+        while(true);
 
-        $root = realpath(__DIR__.'/../..');
-        $directory = realpath(__DIR__.'/../../'.$folder);
-
-        if(!is_dir($directory))
+        if($directory !== '' && $directory !== '/')
         {
-            echo "Error! Project directory does not exist ".$root.$folder.".\033[0m\r\n";
-            return;
+            $htaccess_file = __DIR__.'/../.htaccess';
+            $htaccess = file_get_contents($htaccess_file);
+            $htaccess = preg_replace('/RewriteBase\s+\/[\/\w]*/', 'RewriteBase '.$directory, $htaccess);
+            file_put_contents($htaccess_file, $htaccess);
+
+            self :: displaySuccessMessage('.htaccess file has been configurated.');
         }
 
-        $env_file = __DIR__.'/../.env';
-        $htaccess_file = __DIR__.'/../.htaccess';
-        $env = file_get_contents($env_file);
-        $htaccess = file_get_contents($htaccess_file);
+        self :: setEnvFileParameter('APP_FOLDER', $directory);
+        self :: displaySuccessMessage('.env file has been configurated.');   
+    }
 
-        $env = preg_replace('/APP_FOLDER=[\/\w]*/', 'APP_FOLDER='.$folder, $env);
-        $htaccess = preg_replace('/RewriteBase\s+\/[\/\w]*/', 'RewriteBase '.$folder, $htaccess);
-
-        file_put_contents($env_file, $env);
-        file_put_contents($htaccess_file, $htaccess);
-
-        echo "\033[92m.env file has been configurated\033[0m\r\n";
-        echo "\033[92m.htaccess file has been configurated\033[0m\r\n";
+    static public function generateSecurityToken()
+    {
+        $value = Service :: strongRandomString(40);
+        self :: setEnvFileParameter('APP_TOKEN', $value);
+        self :: displaySuccessMessage('Security token has been generated.');   
     }
 
     static public function postAutoloadDump(Event $event)
     {
-        $a = self :: typePrompt('Say hello');
-        self :: displayErrorMessage($a);
+        //
+        //echo $value;
+        self :: configureFolder();
+        self :: generateSecurityToken();
+        return;
+
+        $driver = '';
+
+        do{
+            $driver = self :: typePrompt('Please type database driver: mysql or sqlite');
+        }
+        while($driver !== 'mysql' && $driver !== 'sqlite');
+
+        self :: setEnvFileParameter('DATABASE_ENGINE', $driver);
+        self :: setEnvFileParameter('DATABASE_HOST', $driver === 'mysql' ? 'localhost' : '');
+
+        if($driver === 'sqlite')
+        {
+            $pdo = self :: runPdo();
+            //self :: setRootUserLogin($pdo);
+        }
+
+        
+
+        //self :: displaySuccessMessage($driver);
+
+        // $value = self :: typePrompt('Please type database driver: mysql or sqlite');
+
+        // if($value !== 'mysql' && $value !== 'sqlite')
+        //     $value = self :: typePrompt('Please type database driver: mysql or sqlite');
+        // $a = self :: typePrompt('Say hello');
+        // self :: displayErrorMessage($a);
+
+        //self :: setEnvFileParameter('APP_ENV', '');
+    }
+
+    //Database confuguration
+
+    static public function runPdo()
+    {
+        $env_file = __DIR__.'/../.env';
+        $env = parse_ini_file($env_file);
+
+        if($env['DATABASE_ENGINE'] !== 'mysql' && $env['DATABASE_ENGINE'] !== 'sqlite')
+        {
+            self :: displayErrorMessage('Undefined database engine in parameter DATABASE_ENGINE in .env file.');
+        }
+
+        if($env['DATABASE_ENGINE'] == 'mysql')
+        {
+            $pdo = new PDO("mysql:host=".$data['DATABASE_HOST'].";dbname=".$data['DATABASE_NAME'], 
+                                                                           $data['DATABASE_USER'], 
+                                                                           $data['DATABASE_PASSWORD'], [
+                                    PDO :: MYSQL_ATTR_INIT_COMMAND => "SET NAMES \"UTF8\""
+                            ]);
+
+            $pdo -> setAttribute(PDO :: MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+        }
+        else if($env['DATABASE_ENGINE'] == 'sqlite')
+        {
+            $path = '/userfiles/database/sqlite/database.sqlite';
+            $file = __DIR__.'/..'.$path;
+            $file = realpath($file);
+
+            if(!is_file($file))
+            {
+                self :: displayErrorMessage('SQLite database file no found: ~'.$path);
+                return;
+            }
+            else if(!is_writable(dirname($file)))
+            {
+                self :: displayErrorMessage('Please make directory with sqlite file writable: '.dirname($file));
+                return;
+            }
+
+            $pdo = new PDO("sqlite:".$file);
+        }
+
+        return $pdo;
     }
 
     static public function configureDatabase(Event $event)
@@ -123,16 +225,6 @@ class Installation
 
         $data = parse_ini_file($env);
 
-        if($data['DATABASE_ENGINE'] == 'mysql')
-        {
-            $pdo = new PDO("mysql:host=".$data['DATABASE_HOST'].";dbname=".$data['DATABASE_NAME'], 
-                                                                           $data['DATABASE_USER'], 
-                                                                           $data['DATABASE_PASSWORD'], [
-                                    PDO :: MYSQL_ATTR_INIT_COMMAND => "SET NAMES \"UTF8\""
-                            ]);
-
-            $pdo -> setAttribute(PDO :: MYSQL_ATTR_USE_BUFFERED_QUERY, true);
-        }
 
         $dump_file = __DIR__.'/../userfiles/database/mysql-dump.sql';
 
@@ -179,5 +271,16 @@ class Installation
         }
 
         return true;
+    }
+
+    //Root user login data
+
+    static public function setRootUserLogin(PDO $pdo)
+    {
+        $query = $pdo -> prepare('SELECT * FROM `users`');
+        $query -> execute();
+        //$result = $query -> fetch(PDO::FETCH_ASSOC);
+
+        print_r($result);
     }
 }
