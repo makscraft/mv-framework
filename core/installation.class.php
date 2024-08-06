@@ -18,7 +18,7 @@ class Installation
 
     static public function displayErrorMessage(string $message)
     {
-        echo "\033[41m ".$message." \033[0m".PHP_EOL.PHP_EOL;
+        echo "\033[41m\r\n\r\n ".$message." \r\n \033[0m".PHP_EOL.PHP_EOL;
     }
 
     static public function displaySuccessMessage(string $message)
@@ -28,7 +28,7 @@ class Installation
 
     static public function displayDoneMessage(string $message)
     {
-        echo "\033[42m ".$message." \033[0m".PHP_EOL.PHP_EOL;
+        echo "\033[42m\r\n\r\n ".$message." \r\n \033[0m".PHP_EOL.PHP_EOL;
     }
 
     static public function setEnvFileParameter(string $key, string $value)
@@ -131,40 +131,13 @@ class Installation
 
     static public function postAutoloadDump(Event $event)
     {
-        //
         //echo $value;
-        self :: configureFolder();
-        self :: generateSecurityToken();
-        return;
+        // self :: configureFolder();
+        // self :: generateSecurityToken();
+        //return;
 
-        $driver = '';
+        self :: configureDatabase();
 
-        do{
-            $driver = self :: typePrompt('Please type database driver: mysql or sqlite');
-        }
-        while($driver !== 'mysql' && $driver !== 'sqlite');
-
-        self :: setEnvFileParameter('DATABASE_ENGINE', $driver);
-        self :: setEnvFileParameter('DATABASE_HOST', $driver === 'mysql' ? 'localhost' : '');
-
-        if($driver === 'sqlite')
-        {
-            $pdo = self :: runPdo();
-            //self :: setRootUserLogin($pdo);
-        }
-
-        
-
-        //self :: displaySuccessMessage($driver);
-
-        // $value = self :: typePrompt('Please type database driver: mysql or sqlite');
-
-        // if($value !== 'mysql' && $value !== 'sqlite')
-        //     $value = self :: typePrompt('Please type database driver: mysql or sqlite');
-        // $a = self :: typePrompt('Say hello');
-        // self :: displayErrorMessage($a);
-
-        //self :: setEnvFileParameter('APP_ENV', '');
     }
 
     //Database confuguration
@@ -181,9 +154,9 @@ class Installation
 
         if($env['DATABASE_ENGINE'] == 'mysql')
         {
-            $pdo = new PDO("mysql:host=".$data['DATABASE_HOST'].";dbname=".$data['DATABASE_NAME'], 
-                                                                           $data['DATABASE_USER'], 
-                                                                           $data['DATABASE_PASSWORD'], [
+            $pdo = new PDO("mysql:host=".$env['DATABASE_HOST'].";dbname=".$env['DATABASE_NAME'], 
+                                                                          $env['DATABASE_USER'], 
+                                                                          $env['DATABASE_PASSWORD'], [
                                     PDO :: MYSQL_ATTR_INIT_COMMAND => "SET NAMES \"UTF8\""
                             ]);
 
@@ -212,38 +185,64 @@ class Installation
         return $pdo;
     }
 
-    static public function configureDatabase(Event $event)
+    static public function configureDatabase()
     {
-        echo $event -> getName()."\r\n";
-        print_r($event -> getArguments());
-        exit();
+        $driver = '';
 
-        $env = __DIR__.'/../.env';
+        do{
+            $driver = self :: typePrompt('Please type database driver: mysql or sqlite');
+        }
+        while($driver !== 'mysql' && $driver !== 'sqlite');
 
-        if(!file_exists($env))
-            return;
+        self :: setEnvFileParameter('DATABASE_ENGINE', $driver);
+        self :: setEnvFileParameter('DATABASE_HOST', $driver === 'mysql' ? 'localhost' : '');
 
-        $data = parse_ini_file($env);
+        if($driver === 'sqlite')
+            self :: configureDatabaseSQLite();
+        else if($driver === 'mysql')
+            self :: displaySuccessMessage('Now please fill database settings for MySQL in .env file and run "composer database"');
+    }
 
+    static public function configureDatabaseMysql()
+    {
+        $env = parse_ini_file(__DIR__.'/../.env');
+        $keys = ['DATABASE_HOST', 'DATABASE_USER', 'DATABASE_NAME'];
 
-        $dump_file = __DIR__.'/../userfiles/database/mysql-dump.sql';
+        foreach($keys as $key)
+            if(!isset($env[$key]) || trim($env[$key]) === '')
+            {
+                self :: displayErrorMessage('Please fill "'.$key.'" parameter in .env file.');
+                return;
+            }
 
-        if(true === self :: loadMysqlDump($dump_file, $pdo))
-            echo "\033[92mDatabase has been configurated.\033[0m\r\n";
+        $pdo = self :: runPdo();
+        $query = $pdo -> prepare('SHOW TABLES');
+        $query -> execute();
+        $tables = $query -> fetchAll(PDO :: FETCH_COLUMN);
+    
+        if(is_array($tables) && in_array('versions', $tables))
+            self :: displaySuccessMessage('MySQL initial dump has been already imported before.');
+        else
+        {        
+            $dump_file = __DIR__.'/../userfiles/database/mysql-dump.sql';
+
+            if(true === self :: loadMysqlDump($dump_file, $pdo))
+                self :: displaySuccessMessage('MySQL initial dump has been imported.');
+        }
+
+        self :: setRootUserLogin($pdo);
+
+        self :: displayDoneMessage('MySQL database has been successfully configurated.');
+    }
+
+    static public function configureDatabaseSQLite()
+    {
+        self :: setRootUserLogin(self :: runPdo());
+        self :: displayDoneMessage('SQLite database has been successfully configurated.');
     }
 
     static public function loadMysqlDump(string $dump_file, PDO $pdo)
     {
-        $query = $pdo -> prepare('SHOW TABLES');
-        $query -> execute();
-        $result = $query -> fetchAll(PDO :: FETCH_COLUMN);
-
-        //if(in_array('accounts', $tables) && in_array('versions', $tables))
-
-        //print_r($tables);
-
-        //!!!!!!! first admin
-
         $sql = '';
         $lines = file($dump_file);
         
@@ -277,10 +276,75 @@ class Installation
 
     static public function setRootUserLogin(PDO $pdo)
     {
-        $query = $pdo -> prepare('SELECT * FROM `users`');
+        $query = $pdo -> prepare("SELECT COUNT(*) FROM `users`");
         $query -> execute();
-        //$result = $query -> fetch(PDO::FETCH_ASSOC);
+        $total = $query -> fetch(PDO::FETCH_NUM)[0];
 
-        print_r($result);
+        $query = $pdo -> prepare("SELECT * FROM `users` WHERE `id`='1'");
+        $query -> execute();
+        $row = $query -> fetch(PDO::FETCH_ASSOC);
+
+        if($total > 1)
+        {
+            self :: displaySuccessMessage('Database has been arready configurated.');
+            return;
+        }
+
+        $login = $password = '';
+
+        do{
+            $login = self :: typePrompt('Please setup your login for admin panel');
+
+            if(strlen($login) > 1)
+                break;
+
+        }
+        while(true);
+
+        do{
+            $password = self :: typePrompt('Please setup your password for admin panel (min 6 characters)');
+
+            if(strlen($password) >= 6)
+                break;
+
+        }
+        while(true);
+
+        $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
+        $date = date('Y-m-d H:i:s');
+
+        if(is_array($row) && isset($row['id']) && $row['id'] == 1 && $total == 1)
+        {
+            $query = $pdo -> prepare(
+                "UPDATE `users`
+                 SET `login`=".$pdo -> quote($login).", `password`=".$pdo -> quote($password).",
+                 `date_registered`='".$date."' 
+                 WHERE `id`='1'"
+            );
+        }
+        else if($total == 0)
+        {                        
+            $query = $pdo -> prepare(
+                "INSERT INTO `users`(`name`,`login`,`password`,`date_registered`,`active`)
+                 VALUES ('Root', ".$pdo -> quote($login).", ".$pdo -> quote($password).", '".$date."', '1')"
+            );
+        }
+
+        if($query -> execute())
+            self :: displaySuccessMessage('Root user of admin panel has been successfully created.');
+    }
+
+    //Commands
+
+    static public function commandConfigureDatabase()
+    {
+        $env = parse_ini_file(__DIR__.'/../.env');
+        
+        if($env['DATABASE_ENGINE'] === 'mysql')
+            self :: configureDatabaseMysql();
+        else if($env['DATABASE_ENGINE'] === 'sqlite')
+            self :: configureDatabaseSQLite();
+        else
+            self :: displayErrorMessage('Undefined database "DATABASE_ENGINE='.$env['DATABASE_ENGINE'].'" in .env file');
     }
 }
