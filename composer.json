@@ -22,7 +22,8 @@
     "scripts": {
         "post-create-project-cmd": "\\Installation::finish",
         "post-autoload-dump": "\\Installation::postAutoloadDump",
-        "database": "\\Installation::commandConfigureDatabase"
+        "database": "\\Installation::commandConfigureDatabase",
+        "migrations": "\\Installation::commandMigrations"
     },
     "require": {
         "php": ">=8.0"

@@ -7,7 +7,7 @@ class Installation
 
     static public function typePrompt(string $message)
     {
-        echo PHP_EOL.$message.": ";
+        echo PHP_EOL.$message.': ';
 
         $stdin = fopen('php://stdin', 'r');
         $answer = trim(fgets($stdin));
@@ -38,11 +38,6 @@ class Installation
 
         $env = preg_replace('/'.$key.'=[\/\w]*/ui', $key.'='.trim($value), $env);
         file_put_contents($env_file, $env);
-    }
-
-    static public function createFolderIfNotExists(string $folder)
-    {
-
     }
 
     //Installation process
@@ -190,7 +185,7 @@ class Installation
         $driver = '';
 
         do{
-            $driver = self :: typePrompt('Please type database driver: mysql or sqlite');
+            $driver = self :: typePrompt('Please type database driver [mysql / sqlite]');
         }
         while($driver !== 'mysql' && $driver !== 'sqlite');
 
@@ -346,5 +341,33 @@ class Installation
             self :: configureDatabaseSQLite();
         else
             self :: displayErrorMessage('Undefined database "DATABASE_ENGINE='.$env['DATABASE_ENGINE'].'" in .env file');
+    }
+
+    static public function commandMigrations()
+    {
+        //$env = parse_ini_file(__DIR__.'/../.env');
+
+        
+        $registry = Registry :: instance();
+
+        include __DIR__.'/../config/setup.php';
+        include __DIR__.'/../config/models.php';
+        include __DIR__.'/../config/plugins.php';
+
+        $mvSetupSettings['IncludePath'] = realpath(__DIR__.'/..').'/';
+        $mvSetupSettings['Models'] = $mvActiveModels;
+        $mvSetupSettings['Plugins'] = $mvActivePlugins;
+
+        //Registry :: set('IncludePath', realpath(__DIR__.'/..').'/');
+        Registry :: generateSettings($mvSetupSettings);
+        $registry -> loadSettings($mvSetupSettings);
+        //Registry :: set('IncludePath', );
+        //
+        //echo ;
+        $registry -> loadEnvironmentSettings() -> lowerCaseConfigNames();
+        $migrations = new Migrations();
+        print_r(Registry :: get('ModelsLower'));
+        print_r(scandir(__DIR__.'/../models'));
+        //$migrations -> scanModels();
     }
 }
