@@ -66,6 +66,7 @@ class Installation
      */
     static public function postAutoloadDump(Event $event)
     {
+        
     }
 
     /**
@@ -73,7 +74,7 @@ class Installation
      */
     static public function finish()
     {
-        self :: configureFolder();
+        self :: configureDirectory();
         self :: generateSecurityToken();
 
         $file = realpath(__DIR__.'/../index.php');
@@ -91,7 +92,7 @@ class Installation
      * Configures project subfolder (if the application is located not at the domain root).
      * Modifies .env and .htaccess files.
      */
-    static public function configureFolder()
+    static public function configureDirectory()
     {
         $directory = '';
 
@@ -104,7 +105,7 @@ class Installation
             if(!preg_match('/^[\/\w]+$/', $folder))
                 $error = 'Error! You need to enter the project subdirectory name like /my/application/ or myapp (or simply /).';
             else if(strpos($folder, '.') !== false)
-                $error = 'Error! Project subdirectory name may not contain \'.\' character.';
+                $error = 'Error! Project subdirectory name may not contain \".\" character.';
 
             if(!$error && !preg_match('/^\//', $folder))
                 $folder = '/'.$folder;
@@ -112,15 +113,22 @@ class Installation
             if(!$error && !preg_match('/\/$/', $folder))
                 $folder = $folder.'/';
 
-            $root = realpath(__DIR__.'/../..');
-            $directory_check = realpath(__DIR__.'/../../'.$folder);
-        
-            if(!$error && !is_dir($directory_check))
+            $back = __DIR__.'/..'.preg_replace('/\w+/', '..', $folder);
+            
+            if(!$error)
             {
-                if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
-                    $folder = str_replace('/', '\\', $folder);
-                
-                $error = 'Error! Project directory does not exist: "'.$root.$folder.'".';
+                if(!is_dir(realpath($back.$folder)))
+                    $error = 'Error! Project directory does not exist: ';
+                else if(realpath($back.$folder) !== realpath(__DIR__.'/..'))
+                    $error = 'Error! Not suitable project subdirectory: ';
+
+                if($error)
+                {
+                    if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+                        $folder = str_replace('/', '\\', $folder);
+
+                    $error .= realpath(__DIR__.'/../..').$folder;
+                }
             }
 
             if($error)
