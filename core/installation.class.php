@@ -234,7 +234,7 @@ class Installation
             return true;
         }
         else if($driver === 'mysql')
-            self :: displaySuccessMessage('Now please fill database settings for MySQL in .env file and run "composer database"');
+            self :: displaySuccessMessage('Now please fill database settings for MySQL in .env file and run "composer database" in your project directory.');
     }
 
     /**
