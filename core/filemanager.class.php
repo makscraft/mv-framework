@@ -263,9 +263,9 @@ class Filemanager
 
 		rewinddir($folder);
 		
-		while(false !== ($file = readdir($folder))) //Now dispalaying files
+		while(false !== ($file = readdir($folder)))
 		{		
-			if(is_file($this -> path.$file)&& $file != '.htaccess')
+			if(is_file($this -> path.$file) && !preg_match('/^\./', $file))
 			{
 				if($count >= $start && $count < $stop) //If we are in needed interval we display the link
 				{
