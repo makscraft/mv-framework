@@ -21,11 +21,23 @@ class Migrations
 	 * @var array
 	 */
 	private $migrations_list = [];
+
+	/**
+	 * Marks if we run migrations in the CLI.
+	 * @var bool
+	 */
+	private $in_console = false;
 	
-	public function __construct()
+	public function __construct($in_console = false)
 	{
 		$this -> registry = Registry :: instance();
 		$this -> db = Database :: instance();
+		$this -> in_console = $in_console;
+	}
+
+	public function getMigrationsList()
+	{
+		return $this -> migrations_list;
 	}
 	
 	public function getMigrationsQuantity()
@@ -35,13 +47,18 @@ class Migrations
 	
 	public function scanModels()
 	{
-		$models = array_keys(Registry :: get('ModelsLower'));
-		$is_mysql = ($this -> registry -> getSetting('DbEngine') == 'mysql');
+		if($this -> in_console)
+			$models = Registry :: get('Models');
+		else
+			$models = array_keys(Registry :: get('ModelsLower'));
+
 		$sql = [];
 		
 		foreach($models as $model_name)
 		{
-			$model_name = mb_strtolower($model_name, "utf-8");
+			if(!$this -> in_console)
+				$model_name = mb_strtolower($model_name, "utf-8");
+
 			$model_object = new $model_name();
 
 			$table = $model_object -> getTable();
@@ -230,5 +247,25 @@ class Migrations
 
 		foreach($sql_list as $sql)
 			$this -> db -> query($sql);
+	}
+
+	public function getMigrationsShortList()
+	{
+		$result = [];
+
+		foreach($this -> migrations_list as $sql)
+		{
+			$sql = str_replace(["\n", "\r"], [' ', ''], $sql);
+
+			if(strpos($sql, 'CREATE TABLE ') !== false)
+			{				
+				$sql = substr($sql, 0, 50);
+				$sql = preg_replace('/\s+\S+$/', '', $sql).' ...';
+			}
+
+			$result[] = $sql;
+		}
+
+		return $result;
 	}
 }

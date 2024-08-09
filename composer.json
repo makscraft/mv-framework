@@ -16,7 +16,8 @@
             "config/autoload.php"
         ],
         "classmap": [
-            "core/"
+            "core/",
+            "models/"
         ]
     },
     "scripts": {

@@ -1,10 +1,17 @@
 <?php
 use Composer\Script\Event;
 
+/**
+ * Class for installation of the framework via composer CLI.
+ */
 class Installation
 {
     //Heplers
 
+    /**
+     * Displays CLI prompt message and retutns the answer.
+     * @return string answer from user
+     */
     static public function typePrompt(string $message)
     {
         echo PHP_EOL.$message.': ';
@@ -16,21 +23,33 @@ class Installation
         return $answer;
     }
 
+    /**
+     * Displays CLI error message with red background.
+     */
     static public function displayErrorMessage(string $message)
     {
         echo "\033[41m\r\n\r\n ".$message." \r\n \033[0m".PHP_EOL.PHP_EOL;
     }
 
+    /**
+     * Displays CLI green colored success message (without background).
+     */
     static public function displaySuccessMessage(string $message)
     {
         echo "\033[92m".$message." \033[0m".PHP_EOL;
     }
 
+    /**
+     * Displays CLI success message with green background.
+     */
     static public function displayDoneMessage(string $message)
     {
         echo "\033[42m\r\n\r\n ".$message." \r\n \033[0m".PHP_EOL.PHP_EOL;
     }
 
+    /**
+     * Opens .env file and puts param into it.
+     */
     static public function setEnvFileParameter(string $key, string $value)
     {
         $env_file = __DIR__.'/../.env';
@@ -42,25 +61,37 @@ class Installation
 
     //Installation process
 
+    /**
+     * Post "composer dump-autoload" event.
+     */
+    static public function postAutoloadDump(Event $event)
+    {
+        self :: finish();
+    }
+
+    /**
+     * Final configuration at the end of "composer create-project" command.
+     */
     static public function finish()
     {
-        $env_file = __DIR__.'/../.env.empty';
-        $env = file_get_contents($env_file);
+        self :: configureFolder();
+        self :: generateSecurityToken();
 
-        $value = Service :: strongRandomString(40);
-        $env = str_replace('APP_TOKEN=', 'APP_TOKEN='.$value, $env);
-
-        file_put_contents(__DIR__.'/../.env', $env);
-        echo "\033[92m .env file has been configurated\033[0m\r\n";
-
-        $file = __DIR__.'/../index.php';
+        $file = realpath(__DIR__.'/../index.php');
         $code = file_get_contents($file);
         $code = str_replace('config/autoload.php', 'vendor/autoload.php', $code);
 
         file_put_contents($file, $code);
-        echo "\033[92m index.php file has been configurated\033[0m\r\n";
+        self :: displaySuccessMessage('index.php file has been configurated.');
+
+        if(true === self :: configureDatabase())
+            self :: displayDoneMessage('MV framework has been successfully installed.');
     }
 
+    /**
+     * Configures project subfolder (if the application is located not at the domain root).
+     * Modifies .env and .htaccess files.
+     */
     static public function configureFolder()
     {
         $directory = '';
@@ -117,6 +148,9 @@ class Installation
         self :: displaySuccessMessage('.env file has been configurated.');   
     }
 
+    /**
+     * Generates secret token for application in .env file.
+     */
     static public function generateSecurityToken()
     {
         $value = Service :: strongRandomString(40);
@@ -124,20 +158,12 @@ class Installation
         self :: displaySuccessMessage('Security token has been generated.');   
     }
 
-    static public function postAutoloadDump(Event $event)
-    {
-        //echo $value;
-        // self :: configureFolder();
-        // self :: generateSecurityToken();
-        //return;
-
-        self :: configureDatabase();
-
-    }
-
     //Database confuguration
 
-    static public function runPdo()
+    /**
+     * Runs PDO object according to db settings.
+     */
+    static public function runPdo(): ?PDO
     {
         $env_file = __DIR__.'/../.env';
         $env = parse_ini_file($env_file);
@@ -166,12 +192,12 @@ class Installation
             if(!is_file($file))
             {
                 self :: displayErrorMessage('SQLite database file no found: ~'.$path);
-                return;
+                return null;
             }
             else if(!is_writable(dirname($file)))
             {
                 self :: displayErrorMessage('Please make directory with sqlite file writable: '.dirname($file));
-                return;
+                return null;
             }
 
             $pdo = new PDO("sqlite:".$file);
@@ -180,6 +206,9 @@ class Installation
         return $pdo;
     }
 
+    /**
+     * Database initial configuration.
+     */
     static public function configureDatabase()
     {
         $driver = '';
@@ -193,11 +222,17 @@ class Installation
         self :: setEnvFileParameter('DATABASE_HOST', $driver === 'mysql' ? 'localhost' : '');
 
         if($driver === 'sqlite')
+        {
             self :: configureDatabaseSQLite();
+            return true;
+        }
         else if($driver === 'mysql')
             self :: displaySuccessMessage('Now please fill database settings for MySQL in .env file and run "composer database"');
     }
 
+    /**
+     * Mysql initial configuration.
+     */
     static public function configureDatabaseMysql()
     {
         $env = parse_ini_file(__DIR__.'/../.env');
@@ -230,12 +265,18 @@ class Installation
         self :: displayDoneMessage('MySQL database has been successfully configurated.');
     }
 
+    /**
+     * Sqlite initial configuration.
+     */
     static public function configureDatabaseSQLite()
     {
         self :: setRootUserLogin(self :: runPdo());
         self :: displayDoneMessage('SQLite database has been successfully configurated.');
     }
 
+    /**
+     * Imports mysql dump into db.
+     */
     static public function loadMysqlDump(string $dump_file, PDO $pdo)
     {
         $sql = '';
@@ -269,6 +310,9 @@ class Installation
 
     //Root user login data
 
+    /**
+     * Updates root user login and password in databese.
+     */
     static public function setRootUserLogin(PDO $pdo)
     {
         $query = $pdo -> prepare("SELECT COUNT(*) FROM `users`");
@@ -288,7 +332,7 @@ class Installation
         $login = $password = '';
 
         do{
-            $login = self :: typePrompt('Please setup your login for admin panel');
+            $login = self :: typePrompt('Please setup your login for MV admin panel');
 
             if(strlen($login) > 1)
                 break;
@@ -297,7 +341,7 @@ class Installation
         while(true);
 
         do{
-            $password = self :: typePrompt('Please setup your password for admin panel (min 6 characters)');
+            $password = self :: typePrompt('Please setup your password for MV admin panel (min 6 characters)');
 
             if(strlen($password) >= 6)
                 break;
@@ -331,6 +375,9 @@ class Installation
 
     //Commands
 
+    /**
+     * Database configuration via CLI composer command.
+     */
     static public function commandConfigureDatabase()
     {
         $env = parse_ini_file(__DIR__.'/../.env');
@@ -343,14 +390,15 @@ class Installation
             self :: displayErrorMessage('Undefined database "DATABASE_ENGINE='.$env['DATABASE_ENGINE'].'" in .env file');
     }
 
+    /**
+     * Check and runs database migrations via CLI composer command.
+     */
     static public function commandMigrations()
     {
-        //$env = parse_ini_file(__DIR__.'/../.env');
-
-        
         $registry = Registry :: instance();
 
         include __DIR__.'/../config/setup.php';
+        include __DIR__.'/../config/settings.php';
         include __DIR__.'/../config/models.php';
         include __DIR__.'/../config/plugins.php';
 
@@ -358,16 +406,31 @@ class Installation
         $mvSetupSettings['Models'] = $mvActiveModels;
         $mvSetupSettings['Plugins'] = $mvActivePlugins;
 
-        //Registry :: set('IncludePath', realpath(__DIR__.'/..').'/');
         Registry :: generateSettings($mvSetupSettings);
+        $registry -> loadSettings($mvMainSettings);
         $registry -> loadSettings($mvSetupSettings);
-        //Registry :: set('IncludePath', );
-        //
-        //echo ;
         $registry -> loadEnvironmentSettings() -> lowerCaseConfigNames();
-        $migrations = new Migrations();
-        print_r(Registry :: get('ModelsLower'));
-        print_r(scandir(__DIR__.'/../models'));
-        //$migrations -> scanModels();
+
+        $migrations = new Migrations(true);
+        $migrations -> scanModels();
+        $available = $migrations -> getMigrationsQuantity();
+
+        if($available == 0)
+        {
+            self :: displaySuccessMessage('No migrations available.');
+            return;
+        }
+
+        echo PHP_EOL;
+        self :: displaySuccessMessage('Found available migrations ('.$available.'):');
+        echo implode("\n", $migrations -> getMigrationsShortList()).PHP_EOL;
+        
+        $answer = self :: typePrompt('Do you want to run the migrations now? [yes]');
+
+        if($answer == '' || $answer == 'yes' || $answer == 'y')
+        {
+            $migrations -> runMigrations('all');
+            self :: displayDoneMessage('Migrations have been executed. Your database is up to date.');
+        }
     }
 }
