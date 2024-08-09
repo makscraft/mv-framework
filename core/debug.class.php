@@ -205,7 +205,12 @@ class Debug
 			if($file !== '' && $line !== 0)
 				$debug_code = self :: getErrorCodeFragment($file, $line);
 
-			include Registry :: get('IncludeAdminPath').'controls/debug-error.php';
+			$screen = Registry :: get('IncludeAdminPath').'controls/debug-error.php';
+
+			if(file_exists($screen))
+				include($screen);
+			else
+				echo $error;
 		}
 		else
 		{
