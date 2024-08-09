@@ -66,7 +66,6 @@ class Installation
      */
     static public function postAutoloadDump(Event $event)
     {
-        self :: finish();
     }
 
     /**
