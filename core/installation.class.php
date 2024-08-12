@@ -6,6 +6,24 @@ use Composer\Script\Event;
  */
 class Installation
 {
+    /**
+     * Current instance of the class.
+     */
+    protected static $instance;
+
+    /**
+     * Creates the current installation instance for directory.
+     */
+    static public function instance(array $params = [])
+    {
+        if(self :: $instance !== null)
+            return;
+
+        self :: $instance = [
+            'directory' => realpath($params['directory'] ?? __DIR__.'/..')
+        ];
+    }
+
     //Heplers
 
     /**
@@ -52,7 +70,7 @@ class Installation
      */
     static public function setEnvFileParameter(string $key, string $value)
     {
-        $env_file = __DIR__.'/../.env';
+        $env_file = self :: $instance['directory'].'/.env';
         $env = file_get_contents($env_file);
 
         $env = preg_replace('/'.$key.'=[\/\w]*/ui', $key.'='.trim($value), $env);
@@ -74,10 +92,11 @@ class Installation
      */
     static public function finish()
     {
+        self :: instance();
         self :: configureDirectory();
         self :: generateSecurityToken();
 
-        $file = realpath(__DIR__.'/../index.php');
+        $file = realpath(self :: $instance['directory'].'/index.php');
         $code = file_get_contents($file);
         $code = str_replace('config/autoload.php', 'vendor/autoload.php', $code);
 
@@ -113,13 +132,13 @@ class Installation
             if(!$error && !preg_match('/\/$/', $folder))
                 $folder = $folder.'/';
 
-            $back = __DIR__.'/..'.preg_replace('/\w+/', '..', $folder);
+            $back = self :: $instance['directory'].preg_replace('/\w+/', '..', $folder);
             
             if(!$error)
             {
                 if(!is_dir(realpath($back.$folder)))
                     $error = 'Error! Project directory does not exist: ';
-                else if(realpath($back.$folder) !== realpath(__DIR__.'/..'))
+                else if(realpath($back.$folder) !== realpath(self :: $instance['directory']))
                     $error = 'Error! Not suitable project subdirectory: ';
 
                 if($error)
@@ -127,7 +146,7 @@ class Installation
                     if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
                         $folder = str_replace('/', '\\', $folder);
 
-                    $error .= realpath(__DIR__.'/../..').$folder;
+                    $error .= realpath(self :: $instance['directory']).$folder;
                 }
             }
 
@@ -143,7 +162,7 @@ class Installation
 
         if($directory !== '' && $directory !== '/')
         {
-            $htaccess_file = __DIR__.'/../.htaccess';
+            $htaccess_file = self :: $instance['directory'].'/.htaccess';
             $htaccess = file_get_contents($htaccess_file);
             $htaccess = preg_replace('/RewriteBase\s+\/[\/\w]*/', 'RewriteBase '.$directory, $htaccess);
             file_put_contents($htaccess_file, $htaccess);
@@ -172,7 +191,7 @@ class Installation
      */
     static public function runPdo(): ?PDO
     {
-        $env_file = __DIR__.'/../.env';
+        $env_file = self :: $instance['directory'].'/.env';
         $env = parse_ini_file($env_file);
 
         if($env['DATABASE_ENGINE'] !== 'mysql' && $env['DATABASE_ENGINE'] !== 'sqlite')
@@ -193,7 +212,7 @@ class Installation
         else if($env['DATABASE_ENGINE'] == 'sqlite')
         {
             $path = '/userfiles/database/sqlite/database.sqlite';
-            $file = __DIR__.'/..'.$path;
+            $file = self :: $instance['directory'].$path;
             $file = realpath($file);
 
             if(!is_file($file))
@@ -242,7 +261,7 @@ class Installation
      */
     static public function configureDatabaseMysql()
     {
-        $env = parse_ini_file(__DIR__.'/../.env');
+        $env = parse_ini_file(self :: $instance['directory'].'/.env');
         $keys = ['DATABASE_HOST', 'DATABASE_USER', 'DATABASE_NAME'];
 
         foreach($keys as $key)
@@ -261,7 +280,7 @@ class Installation
             self :: displaySuccessMessage('MySQL initial dump has been already imported before.');
         else
         {        
-            $dump_file = __DIR__.'/../userfiles/database/mysql-dump.sql';
+            $dump_file = self :: $instance['directory'].'/userfiles/database/mysql-dump.sql';
 
             if(true === self :: loadMysqlDump($dump_file, $pdo))
                 self :: displaySuccessMessage('MySQL initial dump has been imported.');
@@ -387,7 +406,8 @@ class Installation
      */
     static public function commandConfigureDatabase()
     {
-        $env = parse_ini_file(__DIR__.'/../.env');
+        self :: instance();
+        $env = parse_ini_file(self :: $instance['directory'].'/.env');
         
         if($env['DATABASE_ENGINE'] === 'mysql')
             self :: configureDatabaseMysql();
@@ -402,14 +422,15 @@ class Installation
      */
     static public function commandMigrations()
     {
+        self :: instance();
         $registry = Registry :: instance();
 
-        include __DIR__.'/../config/setup.php';
-        include __DIR__.'/../config/settings.php';
-        include __DIR__.'/../config/models.php';
-        include __DIR__.'/../config/plugins.php';
+        include self :: $instance['directory'].'/config/setup.php';
+        include self :: $instance['directory'].'/config/settings.php';
+        include self :: $instance['directory'].'/config/models.php';
+        include self :: $instance['directory'].'/config/plugins.php';
 
-        $mvSetupSettings['IncludePath'] = realpath(__DIR__.'/..').'/';
+        $mvSetupSettings['IncludePath'] = realpath(self :: $instance['directory']).'/';
         $mvSetupSettings['Models'] = $mvActiveModels;
         $mvSetupSettings['Plugins'] = $mvActivePlugins;
 
