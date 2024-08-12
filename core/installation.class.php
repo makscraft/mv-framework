@@ -133,6 +133,7 @@ class Installation
                 $folder = $folder.'/';
 
             $back = self :: $instance['directory'].preg_replace('/\w+/', '..', $folder);
+            $back = realpath($back);
             
             if(!$error)
             {
@@ -146,7 +147,7 @@ class Installation
                     if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
                         $folder = str_replace('/', '\\', $folder);
 
-                    $error .= realpath(self :: $instance['directory']).$folder;
+                    $error .= $back.$folder;
                 }
             }
 
