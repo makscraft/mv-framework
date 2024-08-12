@@ -24,6 +24,28 @@ class Installation
         ];
     }
 
+    /**
+     * Starts MV framework environment.
+     */
+    static public function boot()
+    {
+        $registry = Registry :: instance();
+
+        include self :: $instance['directory'].'/config/setup.php';
+        include self :: $instance['directory'].'/config/settings.php';
+        include self :: $instance['directory'].'/config/models.php';
+        include self :: $instance['directory'].'/config/plugins.php';
+
+        $mvSetupSettings['IncludePath'] = realpath(self :: $instance['directory']).'/';
+        $mvSetupSettings['Models'] = $mvActiveModels;
+        $mvSetupSettings['Plugins'] = $mvActivePlugins;
+
+        Registry :: generateSettings($mvSetupSettings);
+        $registry -> loadSettings($mvMainSettings);
+        $registry -> loadSettings($mvSetupSettings);
+        $registry -> loadEnvironmentSettings() -> lowerCaseConfigNames();
+    }
+
     //Heplers
 
     /**
@@ -76,6 +98,30 @@ class Installation
         $env = preg_replace('/'.$key.'=[\/\w]*/ui', $key.'='.trim($value), $env);
         file_put_contents($env_file, $env);
     }
+
+    static public function removeDirectory($directory)
+    {
+        if($directory == '/' || strpos($directory, '..') !== false)
+            return;
+
+        if(is_dir($directory))
+        { 
+            $objects = scandir($directory);
+
+            foreach($objects as $object)
+            {
+                if($object != '.' && $object != '..')
+                { 
+                    if(is_dir($directory.DIRECTORY_SEPARATOR.$object) && !is_link($directory.DIRECTORY_SEPARATOR.$object))
+                        self :: removeDirectory($directory.DIRECTORY_SEPARATOR.$object);
+                    else
+                        unlink($directory. DIRECTORY_SEPARATOR.$object); 
+                } 
+            }
+          
+            rmdir($directory);
+        } 
+      }
 
     //Installation process
 
@@ -352,7 +398,7 @@ class Installation
 
         if($total > 1)
         {
-            self :: displaySuccessMessage('Database has been arready configurated.');
+            self :: displaySuccessMessage('Database has been already configurated.');
             return;
         }
 
@@ -375,6 +421,9 @@ class Installation
 
         }
         while(true);
+
+        self :: $instance['login'] = $login;
+        self :: $instance['password'] = $password;
 
         $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
         $date = date('Y-m-d H:i:s');
@@ -424,21 +473,7 @@ class Installation
     static public function commandMigrations()
     {
         self :: instance();
-        $registry = Registry :: instance();
-
-        include self :: $instance['directory'].'/config/setup.php';
-        include self :: $instance['directory'].'/config/settings.php';
-        include self :: $instance['directory'].'/config/models.php';
-        include self :: $instance['directory'].'/config/plugins.php';
-
-        $mvSetupSettings['IncludePath'] = realpath(self :: $instance['directory']).'/';
-        $mvSetupSettings['Models'] = $mvActiveModels;
-        $mvSetupSettings['Plugins'] = $mvActivePlugins;
-
-        Registry :: generateSettings($mvSetupSettings);
-        $registry -> loadSettings($mvMainSettings);
-        $registry -> loadSettings($mvSetupSettings);
-        $registry -> loadEnvironmentSettings() -> lowerCaseConfigNames();
+        self :: boot();
 
         $migrations = new Migrations(true);
         $migrations -> scanModels();
