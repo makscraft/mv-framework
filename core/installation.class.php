@@ -142,15 +142,23 @@ class Installation
         self :: configureDirectory();
         self :: generateSecurityToken();
 
-        $file = realpath(self :: $instance['directory'].'/index.php');
-        $code = file_get_contents($file);
-        $code = str_replace('config/autoload.php', 'vendor/autoload.php', $code);
-
-        file_put_contents($file, $code);
+        self :: changeAutoloaderString('/index.php');
         self :: displaySuccessMessage('index.php file has been configurated.');
 
         if(true === self :: configureDatabase())
             self :: displayDoneMessage('MV framework has been successfully installed.');
+    }
+
+    /**
+     * Adds 'vendor/autoload.php' to file.
+     */
+    static public function changeAutoloaderString(string $file)
+    {
+        $file = realpath(self :: $instance['directory'].$file);
+        $code = file_get_contents($file);
+        $code = str_replace('config/autoload.php', 'vendor/autoload.php', $code);
+
+        file_put_contents($file, $code);
     }
 
     /**
