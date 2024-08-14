@@ -1,4 +1,4 @@
-<?
+<?php
 $cache_drop = CacheMedia :: getDropMark();
 $admin_panel_path = Registry :: get('AdminPanelPath');
 $version = Registry :: getVersion();
@@ -20,34 +20,34 @@ foreach($backtrace as $key => $data)
 		<meta name="robots" content="noindex,nofollow" />
 		<title>MV framework</title>
 
-		<link rel="stylesheet" type="text/css" href="<? echo $admin_panel_path; ?>interface/css/style-debug.css<? echo $cache_drop; ?>" />
-		<link rel="icon" href="<? echo $admin_panel_path; ?>interface/images/favicon.svg" type="image/x-icon" />
-		<link rel="shortcut icon" href="<? echo $admin_panel_path; ?>interface/images/favicon.svg" type="image/x-icon" />		
+		<link rel="stylesheet" type="text/css" href="<?php echo $admin_panel_path; ?>interface/css/style-debug.css<?php echo $cache_drop; ?>" />
+		<link rel="icon" href="<?php echo $admin_panel_path; ?>interface/images/favicon.svg" type="image/x-icon" />
+		<link rel="shortcut icon" href="<?php echo $admin_panel_path; ?>interface/images/favicon.svg" type="image/x-icon" />		
 	</head>
 	<body class="debug-page">
 		<div id="debug-area">
 			<header>
 				<div class="inner">
-					<img src="<? echo $admin_panel_path; ?>interface/images/logo.svg<? echo $cache_drop; ?>" alt="MV logo" />
-					<div class="version">MV framework, version <? echo number_format($version, 1).$engine; ?></div>
-					<? if($version_initial): ?>
-						<div class="version-initial">updated from version <? echo number_format($version_initial, 1); ?></div>
-					<? endif; ?>
+					<img src="<?php echo $admin_panel_path; ?>interface/images/logo.svg<?php echo $cache_drop; ?>" alt="MV logo" />
+					<div class="version">MV framework, version <?php echo number_format($version, 1).$engine; ?></div>
+					<?php if($version_initial): ?>
+						<div class="version-initial">updated from version <?php echo number_format($version_initial, 1); ?></div>
+					<?php endif; ?>
 				</div>
 			</header>
 			<section class="content">
 				<div class="inner">
 					<h1>Internal Script Error</h1>
-					<? if(isset($debug_error) && $debug_error): ?>
-						<h3><? echo $debug_error; ?></h3>
-					<?
+					<?php if(isset($debug_error) && $debug_error): ?>
+						<h3><?php echo $debug_error; ?></h3>
+					<?php
 						endif;
 
 						if(isset($debug_code) && $debug_code): 
 					?>
-						<pre class="code"><? echo $debug_code; ?></pre>
-					<? endif; ?>
-					<pre class="backtrace"><? print_r($backtrace); ?></pre>
+						<pre class="code"><?php echo $debug_code; ?></pre>
+					<?php endif; ?>
+					<pre class="backtrace"><?php print_r($backtrace); ?></pre>
 				</div>
 			</section>
 		</div>
