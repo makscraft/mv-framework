@@ -308,7 +308,7 @@ class Cache
 
 		self :: cleanConfigCacheFilesByKey($file_key);
 
-		$content = "<?php\nreturn ".var_export($data, true).";\n?>";
+		$content = "<?php\nreturn ".var_export($data, true).";?>\n";
 
 		$file = $cache_folder.$file_key.'-'.(Registry :: get('Build') ?? '0').'.php';
 		file_put_contents($file, $content);

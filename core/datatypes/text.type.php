@@ -1,5 +1,4 @@
-<?php
-/**
+<?php/**
  * Text datatype class, manages textareas and WW editors content. 
  * Many properties are inherited from Char datatype.
  * Works together with core Editor class.
@@ -24,8 +23,8 @@ class TextModelElement extends CharModelElement
 	
 	public function setValue($value)
 	{
-		$value = is_null($value) ? "" : $value;
-		$this -> value = str_replace("\t", "", $value);
+		$value = is_null($value) ? '' : $value;
+		$this -> value = str_replace("\t", '', $value);
 		
 		if($this -> rich_text)
 		{

@@ -68,7 +68,7 @@ class Database
 			if(!in_array($db_engine, PDO :: getAvailableDrivers()))
 			{
 				$message = "The PDO driver for database '".$db_engine."' is not available. ";
-				$message .= "Please install the needed PDO driver or check the 'DbEngine' config setting.";
+				$message .= "Please install the needed PDO driver or check the database config settings.";
 
 				Debug :: displayError($message);
 			}
@@ -142,10 +142,7 @@ class Database
 	 * Makes value safe before insert into database.
 	 */
 	static public function secure($value)
-	{
-		if(self :: $registry -> getSetting('DbEngine') == 'sqlite')
-			$value = preg_replace("/\n|\t|\r/", '', $value); //To make LIKE operartor work normaly
-		
+	{		
 		return self :: $pdo -> quote($value);
 	}
 	

@@ -209,8 +209,9 @@ class ModelSimple extends Model
 	 */
 	public function getValue(string $field)
 	{
-		if(!$this -> data_loaded) $this -> getDataFromDb();
-			
+		if(!$this -> data_loaded)
+			$this -> getDataFromDb();
+
 		if(isset($this -> data[$field]))
 			return $this -> data[$field];
 	}

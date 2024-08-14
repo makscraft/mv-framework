@@ -71,7 +71,10 @@ class User
 		                                          WHERE `id`=".intval($id));
 		
 		if(!isset($this -> content['id']) || !$this -> content['id'])
+		{
+			$this -> content = null;
 			return;
+		}
 											
 		$this -> id = $this -> content['id']; //Sets user id
 		
@@ -92,12 +95,12 @@ class User
  	public function getError() { return $this -> error; }
 
 	public function checkUserLogin()
-	{
- 		//We check user's passwod in DB according to passed login
- 		$password = md5($this -> content['password']); //Hash of password to compare
- 		
- 		if(!isset($_SESSION['mv']['user']['id']) || !$_SESSION['mv']['user']['id'])
+	{ 		
+ 		if(!isset($_SESSION['mv']['user']['id']) || !is_array($this -> content))
  			return false;
+
+ 		//We check user's password in db according to passed login
+ 		$password = md5($this -> content['password']); //Hash of password to compare
 		
 		if($_SESSION['mv']['user']['id'] != $this -> content['id'] || $_SESSION['mv']['user']['password'] != $password
 		   || !$this -> session -> checkSession())
@@ -109,6 +112,8 @@ class User
 			$this -> session -> continueSession(); //Continues the current session in db
 			return true;
 		}
+
+		return false;
 	}
 	 	
  	static public function updateLoginData($login, $password)

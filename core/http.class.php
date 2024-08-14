@@ -85,7 +85,7 @@ class Http
     static public function responseXml(string $xml): void
     {
         if(strpos($xml, '<?xml version=') !== 0)
-            $xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n".$xml;
+            $xml = "<?xml version=\"1.0\" encoding=\"utf-8\"\n".$xml;
 
         header('Content-type: application/xml');
         echo $xml;

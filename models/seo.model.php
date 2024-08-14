@@ -1,4 +1,4 @@
-<?
+<?php
 class Seo extends ModelSimple
 {
 	protected $name = 'SEO параметры';
@@ -58,4 +58,3 @@ class Seo extends ModelSimple
 			return htmlspecialchars_decode($this -> getValue('meta_footer'), ENT_QUOTES);
 	}
 }
-?>

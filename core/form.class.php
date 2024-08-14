@@ -732,7 +732,7 @@ class Form
 			$caption = $object -> getCaption();
 			$type = $object -> getType();
 			
-			if($type == "many_to_one")
+			if($type == 'many_to_one')
 				continue;
 			
 			if($object -> getProperty('required'))
@@ -750,15 +750,23 @@ class Form
 				if($type == "bool")
 				{
 					if($format == 'divs')
-						$html .= "<label>".$object -> displayHtml()." ".$caption."</label></div>\n</div>\n";
+						$html .= "<label>".$object -> displayHtml()." ".$caption."</label></div>\n";
 					else
 					{
 						$bool_html = $object -> displayHtml();
 						$bool_id = "form-bool-".$object -> getName();
 						$bool_html = str_replace("/>", "id=\"".$bool_id."\" />", $bool_html);
 						
-						$html .= $bool_html." <label for=\"".$bool_id."\">".$caption."</label></div>\n";
+						$html .= $bool_html." <label for=\"".$bool_id."\">".$caption."</label>\n";
 					}
+
+					if($this -> display_with_errors && $object -> getError())
+					{				
+						$error = [$object -> getCaption(), $object -> getError(), $object -> getName()];
+						$html .= "<p class=\"field-error\">".$this -> displayOneError($error)."</p>\n";
+					}					
+
+					$html .= "</div>\n";
 
 					continue;
 				} 
@@ -793,11 +801,11 @@ class Form
 			else if($type == "many_to_many" && !$object -> getProperty('display_table'))
 				$html .= $object -> displayAsSelect();
 			else
-				$html .= $object -> displayHtml("frontend");
+				$html .= $object -> displayHtml('frontend');
 				
 			if($this -> display_with_errors && $object -> getError())
 			{				
-				$error = array($object -> getCaption(), $object -> getError(), $object -> getName());
+				$error = [$object -> getCaption(), $object -> getError(), $object -> getName()];
 				
 				if($object -> getError() == "{error-must-match}")
 					$error[3] = $this -> fields[$object -> getProperty("must_match")] -> getCaption();
@@ -805,7 +813,7 @@ class Form
 				$error = $this -> displayOneError($error);
 				$error = preg_replace("/\s+\./", ".", $error);				
 				$html .= "<p class=\"field-error\">".$error."</p>\n";
-			}			
+			}
 			
 			if($as_divs)
 				$html .= "</div>\n";

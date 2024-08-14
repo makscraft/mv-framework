@@ -312,7 +312,12 @@ class Filter
 				}
 			}			
 			else if(isset($data['value']) && $data['value'] != '') //String values
-				$sql[] = "`".$name."` LIKE '%".$data['value']."%'";
+			{
+				if(Registry :: get('DbEngine') == 'sqlite')
+					$sql[] = "`".$name."` REGEXP '".$data['value']."'";
+				else
+					$sql[] = "`".$name."` LIKE '%".$data['value']."%'";
+			}
 		}
 
 		return implode(" AND ", $sql); //Glues the params into one string

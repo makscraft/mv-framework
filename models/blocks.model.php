@@ -1,4 +1,4 @@
-<?
+<?php
 class Blocks extends Model
 {
 	protected $name = 'Текстовые блоки';
@@ -9,4 +9,3 @@ class Blocks extends Model
 		['Содержание', 'text', 'content', ['rich_text' => true]]
 	];
 }
-?>

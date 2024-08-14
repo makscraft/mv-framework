@@ -891,7 +891,7 @@ class Model extends ModelBase
 			
 		foreach($fields_and_values as $name => $value) //Prepearing values for SQL query
 			$values[] = "`".$name."`=".$this -> db -> secure($value);
-			
+
 		$this -> db -> query("UPDATE `".$this -> table."` 
 							  SET ".implode(",", $values)." 
 							  WHERE `id`='".$this -> id."'");
@@ -1264,7 +1264,7 @@ class Model extends ModelBase
 		$filter_params = $this -> filter -> getParamsForSQL();
 		$filter_params = preg_replace("/(`\w+`)/", $this -> table.".$1", $filter_params);
 		$sorter_params = $this -> sorter -> getParamsForSQL();
-		
+				
 		if($sort_field_type == 'many_to_many' || $sort_field_type == 'many_to_one')
 			$query = $this -> createComplexSql($sort_field_type , $sort_field_name, false);
 		else if($sort_field_type == 'enum' && $this -> elements[$sort_field_name] -> getProperty('foreign_key'))
@@ -1308,7 +1308,7 @@ class Model extends ModelBase
 		$query .= $this -> paginator -> getParamsForSQL(); //Adds pager limits for sql query
 
 		$this -> sql_for_table = $query;
-		
+
 		return $this;
 	}
 		

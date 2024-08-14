@@ -1,4 +1,4 @@
-<?
+<?php
 class Pages extends Model
 {
 	protected $name = 'Меню страниц';
@@ -62,4 +62,3 @@ class Pages extends Model
 		return $html;
 	}
 }
-?>
