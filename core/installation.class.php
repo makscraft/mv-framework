@@ -138,11 +138,8 @@ class Installation
     /**
      * Final configuration at the end of "composer create-project" command.
      */
-    static public function finish(PackageEvent $event)
+    static public function finish()
     {
-        $package = $event -> getOperation() -> getPackage();
-        print_r($package);
-
         self :: instance();
         self :: configureDirectory();
         self :: generateSecurityToken();
@@ -484,10 +481,13 @@ class Installation
      */
     static public function commandConfigureDatabase(Event $event)
     {
-        print_r($event);
-        
         self :: instance(['package' => 'mv']);
         $env = parse_ini_file(self :: $instance['directory'].'/.env');
+
+        if($env['DATABASE_ENGINE'] === 'mysql')
+        {
+            print_r($event -> getArguments());
+        }
         
         if($env['DATABASE_ENGINE'] === 'mysql')
             self :: configureDatabaseMysql();
