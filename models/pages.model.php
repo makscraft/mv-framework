@@ -4,7 +4,7 @@ class Pages extends Model
 	protected $name = 'Меню страниц';
 	
 	protected $model_elements = [
-		['Активировать', 'bool', 'active', ['on_create' => true]],
+		['Active', 'bool', 'active', ['on_create' => true]],
 		['Отображать в меню', 'bool', 'in_menu', ['on_create' => true]],
 		['Название', 'char', 'name', ['required' => true]],
 		['Заголовок', 'char', 'title'],
