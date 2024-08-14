@@ -17,7 +17,8 @@
         ],
         "classmap": [
             "core/",
-            "models/"
+            "models/",
+			"plugins/"
         ]
     },
     "scripts": {
