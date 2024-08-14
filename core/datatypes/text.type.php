@@ -1,4 +1,5 @@
-<?php/**
+<?php
+/**
  * Text datatype class, manages textareas and WW editors content. 
  * Many properties are inherited from Char datatype.
  * Works together with core Editor class.
