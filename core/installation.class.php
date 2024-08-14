@@ -1,5 +1,6 @@
 <?php
 use Composer\Script\Event;
+use Composer\Installer\PackageEvent;
 
 /**
  * Class for installation of the framework via composer CLI.
@@ -137,8 +138,11 @@ class Installation
     /**
      * Final configuration at the end of "composer create-project" command.
      */
-    static public function finish()
+    static public function finish(PackageEvent $event)
     {
+        $package = $event -> getOperation() -> getPackage();
+        print_r($package);
+
         self :: instance();
         self :: configureDirectory();
         self :: generateSecurityToken();
@@ -478,8 +482,10 @@ class Installation
     /**
      * Database configuration via CLI composer command.
      */
-    static public function commandConfigureDatabase()
+    static public function commandConfigureDatabase(Event $event)
     {
+        print_r($event);
+        
         self :: instance(['package' => 'mv']);
         $env = parse_ini_file(self :: $instance['directory'].'/.env');
         
