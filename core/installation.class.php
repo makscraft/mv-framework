@@ -357,8 +357,9 @@ class Installation
         self :: setRootUserLogin($pdo);
 
         self :: displayDoneMessage('MySQL database has been successfully configurated.');
-        //self :: displayFinalInstallationMessage();
-        echo self :: $instance['package'].'!!!!!!!!!!';
+
+        if(self :: $instance['package'] === 'mv')
+            self :: displayFinalInstallationMessage();
     }
 
     /**
