@@ -486,7 +486,17 @@ class Installation
 
         if($env['DATABASE_ENGINE'] === 'mysql')
         {
-            print_r($event -> getArguments());
+            $arguments = $event -> getArguments();
+
+            if(isset($arguments[0]) && $arguments[0] == 'dev')
+            {
+                self :: setEnvFileParameter('DATABASE_HOST', 'localhost');
+                self :: setEnvFileParameter('DATABASE_USER', 'root');
+                self :: setEnvFileParameter('DATABASE_PASSWORD', '');
+                self :: setEnvFileParameter('DATABASE_NAME', $arguments[1] ?? 'development');
+                
+                $env = parse_ini_file(self :: $instance['directory'].'/.env');
+            }
         }
         
         if($env['DATABASE_ENGINE'] === 'mysql')
