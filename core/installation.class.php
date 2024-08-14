@@ -146,7 +146,7 @@ class Installation
         self :: displaySuccessMessage('index.php file has been configurated.');
 
         if(true === self :: configureDatabase())
-            self :: displayDoneMessage('MV framework has been successfully installed.');
+            self :: displayFinalInstallationMessage();
     }
 
     /**
@@ -238,6 +238,18 @@ class Installation
         self :: setEnvFileParameter('APP_TOKEN', $value);
         self :: displaySuccessMessage('Security token has been generated.');   
     }
+
+    static public function displayFinalInstallationMessage()
+    {
+        Installation :: instance(['directory' => __DIR__.'/..']);
+        $env = parse_ini_file(self :: $instance['directory'].DIRECTORY_SEPARATOR.'.env');
+
+        $message = "Installation complete, now you can open your MV application in browser.".PHP_EOL;
+        $message .= " MV start page http://yourdomain.com".preg_replace('/\/$/', '', $env['APP_FOLDER']).PHP_EOL;
+        $message .= " Admin panel location http://yourdomain.com".$env['APP_FOLDER']."adminpanel";
+
+        self :: displayDoneMessage($message);
+    }    
 
     //Database confuguration
 
@@ -344,6 +356,8 @@ class Installation
         self :: setRootUserLogin($pdo);
 
         self :: displayDoneMessage('MySQL database has been successfully configurated.');
+        //self :: displayFinalInstallationMessage();
+        echo __CLASS__;
     }
 
     /**
