@@ -12,11 +12,7 @@
         }
     ],
     "autoload": {
-        "files": [
-            "config/autoload.php"
-        ],
         "classmap": [
-            "core/",
             "models/",
 			"plugins/"
         ]
@@ -24,10 +20,12 @@
     "scripts": {
         "post-create-project-cmd": "\\Installation::finish",
         "post-autoload-dump": "\\Installation::postAutoloadDump",
+        "post-update-cmd": "\\Installation::postUpdate",
         "database": "\\Installation::commandConfigureDatabase",
         "migrations": "\\Installation::commandMigrations"
-    },
+    },    
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+		"makscraft/mv-core": "@dev"
     }
 }
