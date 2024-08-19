@@ -8,11 +8,11 @@ include $mv -> views_path.'main-header.php';
 <section class="content">
 	<h1><?php echo $content -> name; ?></h1>
 	<p><img src="<?php echo $mv -> root_path; ?>adminpanel/interface/images/logo.svg" alt="MV logo" /></p>
-	<p>Версия: <?php echo number_format(Registry :: getVersion(), 1).', '.Registry :: get('DbEngine'); ?><br>
-	Папка проекта: <?php echo Registry :: get('IncludePath'); ?><br>
-	Отключить отладочную панель: настройка 'DebugPanel' в файле config/setup.php<br>
-	<a href="<?php echo Registry :: get('AdminPanelPath'); ?>" target="_blank">Административная панель</a>,
-	логин: root, пароль: root</p>
+	<p>Version: <?php echo number_format(Registry :: getVersion(), 1).', '.Registry :: get('DbEngine'); ?><br>
+	Project directory: <?php echo Registry :: get('IncludePath'); ?><br>
+	Swith off the debug panel: setting 'DebugPanel' in config/setup.php file<br>
+	<a href="<?php echo Registry :: get('AdminPanelPath'); ?>" target="_blank">Admin panel</a>,
+	Login: root<br>Password: root</p>
 	<?php echo $content -> content; ?>
 </section>
 <?php
