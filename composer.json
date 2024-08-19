@@ -22,7 +22,8 @@
         "post-autoload-dump": "\\Installation::postAutoloadDump",
         "post-update-cmd": "\\Installation::postUpdate",
         "database": "\\Installation::commandConfigureDatabase",
-        "migrations": "\\Installation::commandMigrations"
+        "migrations": "\\Installation::commandMigrations",
+		"cleanup": "\\Installation::commandCleanup"
     },    
     "require": {
         "php": ">=8.0",
