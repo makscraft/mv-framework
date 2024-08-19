@@ -1,4 +1,4 @@
-<?
+<?php
 $content = $mv -> pages -> defineCurrentPage($mv -> router);
 $mv -> display404($content);
 $mv -> seo -> mergeParams($content, 'name');
@@ -39,8 +39,8 @@ if($form -> isValid())
 include $mv -> views_path.'main-header.php';
 ?>
 <section class="content">
-	<h1><? echo $content -> name; ?></h1>
-	<?
+	<h1><?php echo $content -> name; ?></h1>
+	<?php
 		echo $content -> content;
 		
 		if($form_complete)
@@ -58,14 +58,14 @@ include $mv -> views_path.'main-header.php';
 		if(!$form_complete):
 	?>
 	<form method="post" enctype="multipart/form-data">
-		<? echo $form -> display(); ?>
+		<?php echo $form -> display(); ?>
 		<div class="buttons">
-			<? echo $form -> displayTokenCSRF(); ?>
+			<?php echo $form -> displayTokenCSRF(); ?>
 			<button>Отправить</button>
 		</div>
 	</form>
-	<? endif; ?>
+	<?php endif; ?>
 </section>
-<?
+<?php
 include $mv -> views_path.'main-footer.php';
 ?>

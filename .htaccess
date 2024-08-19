@@ -8,7 +8,7 @@ RewriteEngine on
 
 RewriteBase /
 
-RewriteRule ^(config|core|models|plugins|views|log|customs)\/.* index.php [L]
+RewriteRule ^(config|core|models|plugins|views|log|customs|vendor)\/.* index.php [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

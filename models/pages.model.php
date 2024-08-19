@@ -1,18 +1,18 @@
 <?php
 class Pages extends Model
 {
-	protected $name = 'Меню страниц';
+	protected $name = 'Pages';
 	
 	protected $model_elements = [
 		['Active', 'bool', 'active', ['on_create' => true]],
-		['Отображать в меню', 'bool', 'in_menu', ['on_create' => true]],
-		['Название', 'char', 'name', ['required' => true]],
-		['Заголовок', 'char', 'title'],
-		['Родительский раздел', 'parent', 'parent'],
-		['Ссылка', 'url', 'url', ['unique' => true, 'translit_from' => 'name']],
-		['Редирект', 'redirect', 'redirect'],
-		['Позиция', 'order', 'order'],
-		['Содержание', 'text', 'content', ['rich_text' => true]]
+		['In menu', 'bool', 'in_menu', ['on_create' => true]],
+		['Name', 'char', 'name', ['required' => true]],
+		['Title', 'char', 'title'],
+		['Parent section', 'parent', 'parent'],
+		['URL', 'url', 'url', ['unique' => true, 'translit_from' => 'name']],
+		['Redirect', 'redirect', 'redirect'],
+		['Position', 'order', 'order'],
+		['Content', 'text', 'content', ['rich_text' => true]]
 	];
 	
 	public function defineCurrentPage(Router $router)

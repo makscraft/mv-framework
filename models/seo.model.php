@@ -1,15 +1,15 @@
 <?php
 class Seo extends ModelSimple
 {
-	protected $name = 'SEO параметры';
+	protected $name = 'SEO parameters';
    
 	protected $model_elements = [
-		['Заголовок', 'char', 'title', ['help_text' => 'Значение заголовка (title) по умолчанию для всех страниц']],
-		['Ключевые слова', 'text', 'keywords', ['help_text' => 'Ключевые слова (meta keywords) по умолчанию для всех страниц']],
-      	['Описание', 'text', 'description', ['help_text' => 'Описание (meta description) по умолчанию для всех страниц']],
-      	['Robots.txt', 'text', 'robots', ['help_text' => 'Содержимое файла robots.txt']],
-		['Meta данные в head', 'text', 'meta_head', ['help_text' => 'Meta тэги, счетчики, плагины']],
-		['Meta данные в body', 'text', 'meta_footer', ['help_text' => 'Счетчики и плагины']]
+		['Title', 'char', 'title', ['help_text' => 'Default value of html meta title for all pages']],
+		['Keywords', 'text', 'keywords', ['help_text' => 'Default value of html meta keywords for all pages']],
+      	['Description', 'text', 'description', ['help_text' => 'Default value of html meta description for all pages']],
+      	['Robots.txt', 'text', 'robots', ['help_text' => 'Content of robots.txt']],
+		['Meta data in head', 'text', 'meta_head', ['help_text' => 'Meta tags, counters, plugins, verifications']],
+		['Meta date in body', 'text', 'meta_footer', ['help_text' => 'Counters and plugins']]
 	];
 	
 	public function mergeParams(mixed $content, string $name_field = '')

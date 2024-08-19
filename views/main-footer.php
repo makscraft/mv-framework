@@ -1,3 +1,3 @@
-    <? echo $mv -> seo -> displayMetaData('footer'); ?>
+    <?php echo $mv -> seo -> displayMetaData('footer'); ?>
 </body>
 </html>
