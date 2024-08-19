@@ -1,15 +1,19 @@
+# General settings for Apache
 AddDefaultCharset UTF-8
 Options -Indexes
 
+# Mod rewrite enable
 RewriteEngine on
 
-#RewriteCond %{HTTP_HOST} ^www\.domain\.com [NC]
-#RewriteRule ^(.*)$ http://domain.com/$1 [R=301,L]
-
+# The subdirectory of the application, on production usually /
+# Used if the application is not at the root directory of domain
+# Works together with APP_FOLDER setting from .env file (must be the same)
 RewriteBase /
 
+# Root application directories with no access allowed
 RewriteRule ^(config|core|models|plugins|views|log|customs|vendor)\/.* index.php [L]
 
+# Leads all requests to one front php file, except for media, extra, userfiles and adminpanel directories
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule .* index.php [L]

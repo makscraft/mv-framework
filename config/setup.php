@@ -46,7 +46,7 @@ $mvSetupSettings = [
 //You can use APP_DOMAIN setting in .env file instead.
 'DomainName' => '',
 
-//Folder of the application (usually '/' on production server).
+//Subfolder of the application (usually '/' on production server).
 //You can use APP_FOLDER setting in .env file instead.
 'MainPath' => '/',
 
