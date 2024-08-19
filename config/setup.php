@@ -40,11 +40,11 @@ $mvSetupSettings = [
 'TimeZone' => 'Asia/Novosibirsk',
 
 //Region for localization see folder ~/adminpanel/i18n/
-'Region' => 'ru',
+'Region' => 'en',
 
 //Domain name of the application must begin with 'http(s)://' (without trailing slash).
 //You can use APP_DOMAIN setting in .env file instead.
-'DomainName' => 'http://localhost',
+'DomainName' => '',
 
 //Folder of the application (usually '/' on production server).
 //You can use APP_FOLDER setting in .env file instead.
