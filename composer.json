@@ -23,6 +23,7 @@
         "post-update-cmd": "\\Installation::postUpdate",
         "database": "\\Installation::commandConfigureDatabase",
         "migrations": "\\Installation::commandMigrations",
+		"region": "\\Installation::commandRegion",
 		"cleanup": "\\Installation::commandCleanup"
     },    
     "require": {
