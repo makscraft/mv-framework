@@ -1,18 +1,21 @@
 <?php
-// Template for email messages, contains body and css style of message
-//
-// Variables for body: {message} - message body,
-//                     {subject} - email subject,
-//                     {domain} - current domain with root folder
-//                     {signature} - common signature from config/settings.php}
-//
-// Email :: setTemplate("name");
-// Email :: send($recipient, $subject, $message);
-
+/**
+ * Template for email messages, contains body and css styles of the message.
+ * 
+ * Variables for body:
+ *		{message} - message body,
+ *		{subject} - email subject,
+ *		{domain} - current domain with project subfolder
+ * 		{signature} - common signature from config/settings.php file
+ * 
+ * Example of use:
+ * Email :: setTemplate("name");
+ * Email :: send($recipient, $subject, $message);
+ */
 $email_template = array(
 	"body" => "<body style=\"margin:0; padding:5px 0; font-family: Arial, sans-serif;\" bgcolor=\"#fff\">
 			   <div style=\"background:#fff; padding:10px 3%; max-width:600px;\">
-			   <img src=\"https://mv-framework.ru/media/images/logo-mv-framework.jpg\" alt=\"Logo\" border=\"0\" width=\"40px\" style=\"display: block;\"/>
+			   <img src=\"https://mv-framework.com/media/images/logo-mv-framework.jpg\" alt=\"MV logo\" border=\"0\" width=\"40px\" style=\"display: block;\"/>
 			   <p style=\"font-family: Arial, sans-serif; font-size: 17px; line-height: 17px; margin-bottom: 15px; padding-top: 18px;\">{subject}</p>
 			   {message}
 			   <p style=\"padding:10px 0 0 0; border-bottom:1px solid #ddd;\"></p>
