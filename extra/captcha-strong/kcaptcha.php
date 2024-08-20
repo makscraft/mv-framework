@@ -212,5 +212,3 @@ class Captcha{
 		return $this -> keystring;
 	}
 }
-
-?>

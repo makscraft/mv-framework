@@ -1,4 +1,4 @@
-<?
+<?php
 // Template for email messages, contains body and css style of message
 //
 // Variables for body: {message} - message body,
@@ -32,4 +32,3 @@ $email_template = array(
 		'th'     => 'text-align:left; background:#eee; font-size:13px; font-weight:bold; padding:10px 20px; vertical-align:top',
 		'td'     => 'text-align:left; padding:10px 20px; text-align:left; border-bottom:1px solid #d6d6ce; vertical-align:top')
 );
-?>

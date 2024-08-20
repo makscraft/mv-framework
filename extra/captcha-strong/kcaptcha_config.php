@@ -30,4 +30,3 @@ $background_color = array(255,255,255); //array(mt_rand(200,255), mt_rand(200,25
 
 //Captcha image JPEG quality (bigger is better quality, but larger file size)
 $jpeg_quality = 90;
-?>
