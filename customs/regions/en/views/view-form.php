@@ -4,15 +4,15 @@ $mv -> display404($content);
 $mv -> seo -> mergeParams($content, 'name');
 
 $fields = [
-	['Имя', 'char', 'name', ['required' => true]],
+	['Name', 'char', 'name', ['required' => true]],
 	['Email', 'email', 'email'],
-	['Тема', 'enum', 'theme', ['empty_value' => 'Не выбрано', 'required' => 1,
-							   'values_list' => ['business' => 'Организационный вопрос',
-												 'tecnical' => 'Технический вопрос',
-												 'commertial' => 'Коммерческое предложение',
-												 'other' => 'Другое']]],
+	['Theme', 'enum', 'theme', ['empty_value' => 'Not selected', 'required' => 1,
+							   'values_list' => ['business' => 'Business question',
+												 'tecnical' => 'Technical question',
+												 'commertial' => 'Commercial offer',
+												 'other' => 'Other']]],
 	
-	['Изображение', 'image', 'image', ['required' => true, 'files_folder' => 'uploads']],
+	['Image', 'image', 'image', ['required' => true, 'files_folder' => 'uploads']],
 
 
 	/*
@@ -23,8 +23,8 @@ $fields = [
 	['Multi images', 'multi_images', 'images', ['files_folder' => 'images_many']],
 	*/
 
-	['Сообщение', 'text', 'message', ['required' => true]],
-	['Согласен получать новости', 'bool', 'news']
+	['Message', 'text', 'message', ['required' => true]],
+	['I agree to receive news', 'bool', 'news']
 ];
 
 $form = new Form($fields);
@@ -45,11 +45,11 @@ include $mv -> views_path.'main-header.php';
 		
 		if($form_complete)
 		{
-			echo "<div class=\"form-success\"><p>Форма успешно заполнена.</p></div>\n";
-			echo "<h3>Сообщение для отправки по email</h3>\n";
+			echo "<div class=\"form-success\"><p>The form has been successfully completed.</p></div>\n";
+			echo "<h3>Message to be sent by email</h3>\n";
 			echo $form -> composeMessage();
 			
-			echo "<h3>Поля для SQL запроса</h3>\n";
+			echo "<h3>Fields for SQL query</h3>\n";
 			Debug :: pre($form -> getAllValues());
 		}
 		else
@@ -61,7 +61,7 @@ include $mv -> views_path.'main-header.php';
 		<?php echo $form -> display(); ?>
 		<div class="buttons">
 			<?php echo $form -> displayTokenCSRF(); ?>
-			<button>Отправить</button>
+			<button>Send form</button>
 		</div>
 	</form>
 	<?php endif; ?>

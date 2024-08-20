@@ -37,13 +37,13 @@ return [
                 'order' => 2,
                 'content' => '<p>Main idea of MV is to provide a simplified and faster way to create websites 
                               and web applications with the help of built-in CMF that allows to manage content with 
-                              Admin Panel.</p><ul>\n
-                              <li>Totally object-oriented approach</li>\n
-                              <li>Autoloading of classes of models and plugins</li>\n
-                              <li>Abstraction of database</li>\n
-                              <li>An option to use different DBMS (MySQL and SQLite)</li>\n
-                              <li>Use of popular PHP patterns (Sigleton, Active Record)</li>\n
-                              <li>Updatable core and admin interface (reverse compatibility)</li>\n</ul>
+                              Admin Panel.</p><ul>
+                              <li>Totally object-oriented approach</li>
+                              <li>Autoloading of classes of models and plugins</li>
+                              <li>Abstraction of database</li>
+                              <li>MySQL and SQLite databases support</li>
+                              <li>Use of popular PHP patterns (Sigleton, Active Record)</li>
+                              <li>Updatable core and admin interface (reverse compatibility)</li></ul>
                               <p>Automatically created the interface for content management. 
                               All active models have their own section in Admin Panel where it is possible to create, edit and delete records.</p>'
             ],
