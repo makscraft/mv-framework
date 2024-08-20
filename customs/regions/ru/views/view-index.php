@@ -14,7 +14,7 @@ include $mv -> views_path.'main-header.php';
 	Среда разработки: <?php echo Registry :: get('APP_ENV'); ?><br>
 	Папка проекта: <?php echo Registry :: get('IncludePath'); ?><br>
 	Отключить отладочную панель: настройка 'DebugPanel' в файле config/setup.php<br><br>
-	<a href="<?php echo Registry :: get('AdminPanelPath'); ?>" target="_blank">>Административная панель</a><br>
+	<a href="<?php echo Registry :: get('AdminPanelPath'); ?>" target="_blank">><?php echo I18n :: locale('admin-panel'); ?></a><br>
 	Логин: <?php echo $user -> login; ?><br>
 	Пароль: <?php echo Service :: checkHash('root', $user -> password) ? 'root' : '******'; ?></p>
 	<?php echo $content -> content; ?>
