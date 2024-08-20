@@ -1,20 +1,30 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 
 CREATE TABLE `blocks` (
   `id` int(11) NOT NULL,
   `active` tinyint(4) NOT NULL,
   `name` varchar(200) NOT NULL,
   `content` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `cache` (
   `key` varchar(200) NOT NULL,
-  `content` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `content` longtext NOT NULL,
+  `until` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `cache_clean` (
   `key` varchar(200) NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `garbage` (
   `id` int(11) NOT NULL,
@@ -23,7 +33,7 @@ CREATE TABLE `garbage` (
   `name` varchar(200) NOT NULL,
   `content` text NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `log` (
   `id` int(11) NOT NULL,
@@ -33,7 +43,7 @@ CREATE TABLE `log` (
   `operation` varchar(30) NOT NULL,
   `date` datetime NOT NULL,
   `name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `pages` (
   `id` int(11) NOT NULL,
@@ -46,24 +56,24 @@ CREATE TABLE `pages` (
   `content` text NOT NULL,
   `active` tinyint(4) NOT NULL,
   `in_menu` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO `pages` (`id`, `parent`, `name`, `title`, `url`, `redirect`, `order`, `content`, `active`, `in_menu`) VALUES
-(1, -1, 'Добро пожаловать', '', 'index', '', 1, '<h2>Модели<br></h2><p>Файлы моделей расположены в папке /models/<br><a href="http://mv-framework.ru/predustanovlennye-modeli/" target="_blank">Подробнее о моделях</a></p><h2>Шаблоны</h2><p>Файлы шаблонов расположены в папке /views/<br><a href="http://mv-framework.ru/sozdanie-novogo-shablona/" target="_blank">Подробнее о шаблонах</a></p><h2>Маршрутизация</h2><p>Файл с маршрутами /config/routes.php<br><a href="http://mv-framework.ru/obshie-principy-shablonov/" target="_blank">Подробнее о маршрутизации</a></p>', 1, 1),
-(2, -1, 'Страница не найдена', '', 'e404', '', 5, '<p>Запрошенная страница не найдена на сайте</p>', 1, 0),
-(3, -1, 'О проекте', '', 'about', '', 2, '<p>Основная идея MV framework - упростить и ускорить создание сайтов и веб-приложений при помощи встроенного CMF, позволяющего управлять контентом через панель администратора.</p><ul>\r\n<li>полностью объектно-ориентированный подход</li>\r\n<li>автозагрузка классов моделей и плагинов</li>\r\n<li>отсутствие констант и глобальных переменных</li>\r\n<li>абстракция базы данных</li>\r\n<li>возможность использования разных СУБД (MySQL и SQLite)</li>\r\n<li>применение популярных PHP паттернов (Sigleton, Active Record)</li>\r\n<li>обновляемое ядро и административный интерфейс (обратная совместимость)</li>\r\n</ul><p>Административная панель автоматически создает интерфейс для управления моделями. Все активные модели имеют свой раздел в административной панеле, через который можно создавать, редактировать и удалять записи.</p>', 1, 1),
-(4, -1, 'Документация и поддержка', '', 'documentation', '', 3, '<p>Документация и примеры кода <a href="http://mv-framework.ru" target="_blank">http://mv-framework.ru</a></p><p><a href="http://mv-framework.ru" target="_blank"></a>Вопросы и ответы <a href="http://mv-framework.ru/questions/" target="_blank">http://mv-framework.ru/questions/</a></p><p><a href="http://mv-framework.ru/questions/" target="_blank"></a>Обратная связь <a href="http://mv-framework.ru/feedback/" target="_blank">http://mv-framework.ru/feedback/</a></p>', 1, 1),
-(5, -1, 'Форма', '', 'form', '', 4, '<p>Пример формы для отправки email сообщения или занесения записи в базу данных.</p>', 1, 1);
+(1, -1, 'Welcome', '', 'index', '', 1, '<h2>Models</h2><p>Models are located at /models/ folder<br><a href=\"http://mv-framework.com/pre-installed-models/\" target=\"_blank\">Read more about models</a></p><h2>Views</h2><p>Views (templates) are located at /views/ folder<br><a href=\"http://mv-framework.com/creating-a-new-template/\" target=\"_blank\">Read more about views</a></p><h2>Routes</h2><p>Routes are listed in /config/routes.php file<br><a href=\"http://mv-framework.com/general-principles-of-views/\" target=\"_blank\">Read more about routing</a></p>', 1, 1),
+(2, -1, '404 not found', '', 'e404', '', 5, '<p>The requested page was not found.</p>', 1, 0),
+(3, -1, 'About', '', 'about', '', 2, '<p>Main idea of MV is to provide a simplified and faster way to create websites and web applications with the help of built-in CMF that allows to manage content with Admin Panel.</p><ul>\r\n<li>Totally object-oriented approach</li>\r\n<li>Auto-load of classes of models and plugins</li>\r\n<li>No use of constant and global variables</li>\r\n<li>Abstract database</li>\r\n<li>An option to use different DBMS (MySQL and SQLite)</li>\r\n<li>Use of popular PHP patterns (Sigleton, Active Record)</li>\r\n<li>Updatable core and Admin Interface (reverse compatibility)</li>\r\n</ul><p>There is a part of MV called Admin Panel that automatically creates the interface for model management. All active models have their own section in Admin Panel where it is possible to create, edit and delete records.</p>', 1, 1),
+(4, -1, 'Documentation and support', '', 'documentation', '', 3, '<p>Documentation and code samples <a href=\"http://mv-framework.com\" target=\"_blank\">http://mv-framework.com</a></p><p>Feedback form <a href=\"http://mv-framework.com/feedback/\" target=\"_blank\">http://mv-framework.com/feedback/</a></p>', 1, 1),
+(5, -1, 'Form', '', 'form', '', 4, '', 1, 1);
 
 CREATE TABLE `seo` (
   `key` varchar(100) NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `settings` (
   `key` varchar(100) NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO `settings` (`key`, `value`) VALUES
 ('files_counter', '1');
@@ -78,7 +88,7 @@ CREATE TABLE `users` (
   `date_last_visit` datetime NOT NULL,
   `settings` text NOT NULL,
   `active` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO `users` (`id`, `name`, `email`, `login`, `password`, `date_registered`, `date_last_visit`, `settings`, `active`) VALUES
 (1, 'Root', '', 'root', '$2y$10$oHQF165kHAun.Qj97pkDVu2.RizSYKuzbtVwNcReKI6fVAU4jrXbi', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 1);
@@ -88,14 +98,14 @@ CREATE TABLE `users_logins` (
   `date` datetime NOT NULL,
   `user_agent` varchar(32) NOT NULL,
   `ip_address` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `users_passwords` (
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `password` varchar(255) NOT NULL,
   `code` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `users_rights` (
   `user_id` int(11) NOT NULL,
@@ -104,7 +114,7 @@ CREATE TABLE `users_rights` (
   `read` tinyint(4) NOT NULL,
   `update` tinyint(4) NOT NULL,
   `delete` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `users_sessions` (
   `user_id` int(11) NOT NULL,
@@ -112,7 +122,7 @@ CREATE TABLE `users_sessions` (
   `ip_address` varchar(20) NOT NULL,
   `user_agent` varchar(32) NOT NULL,
   `last_hit` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `versions` (
   `id` int(11) NOT NULL,
@@ -122,7 +132,8 @@ CREATE TABLE `versions` (
   `content` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
 ALTER TABLE `blocks`
   ADD PRIMARY KEY (`id`),
@@ -179,15 +190,26 @@ ALTER TABLE `versions`
   ADD KEY `model_version` (`model`,`version`),
   ADD KEY `model_row_id_version` (`model`,`row_id`,`version`);
 
+
 ALTER TABLE `blocks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `garbage`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE `pages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 ALTER TABLE `versions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

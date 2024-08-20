@@ -1,7 +1,7 @@
 <?php
 /**
  * MV - content management framework for developing internet sites and applications.
- * Released under the terms of BSD License.
+ * 
  * https://mv-framework.com
  * https://mv-framework.ru
  */
