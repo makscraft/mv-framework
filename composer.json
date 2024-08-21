@@ -24,6 +24,7 @@
         "database": "\\Installation::commandConfigureDatabase",
         "migrations": "\\Installation::commandMigrations",
 		"region": "\\Installation::commandRegion",
+        "service": "\\Installation::commandService",
 		"cleanup": "\\Installation::commandCleanup"
     },    
     "require": {

@@ -61,7 +61,7 @@ include $mv -> views_path.'main-header.php';
 		<?php echo $form -> display(); ?>
 		<div class="buttons">
 			<?php echo $form -> displayTokenCSRF(); ?>
-			<button>Send form</button>
+			<button>Submit form</button>
 		</div>
 	</form>
 	<?php endif; ?>

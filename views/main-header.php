@@ -16,6 +16,6 @@
 <header>
 	<ul class="menu">
 		<?php echo $mv -> pages -> displayMenu(-1); ?>
-		<li><a href="<?php echo Registry :: get('AdminPanelPath'); ?>" target="_blank">Административная панель</a></li>
+		<li><a href="<?php echo Registry :: get('AdminPanelPath'); ?>" target="_blank"><?php echo I18n :: locale('admin-panel'); ?></a></li>
 	</ul>
 </header>
