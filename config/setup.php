@@ -40,6 +40,8 @@ $mvSetupSettings = [
 'TimeZone' => '',
 
 //Region for localization see folder ~/adminpanel/i18n/
+//Whole list of supported regions in config/settings.php file, 'SupportedRegions' array
+//You can use APP_REGION setting in .env file instead.
 'Region' => 'en',
 
 //Domain name of the application must begin with 'http(s)://' (without trailing slash).
@@ -51,6 +53,7 @@ $mvSetupSettings = [
 'MainPath' => '/',
 
 //Name of folder with admin panel. No '/' before or after.
+//To change admin panel url, rename it's directory and change this setting.
 'AdminFolder' => 'adminpanel',
 
 //If true, MV will start the session at the frontend.
