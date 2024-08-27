@@ -12,7 +12,7 @@ CREATE TABLE `blocks` (
   `id` int(11) NOT NULL,
   `active` tinyint(4) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `content` text NOT NULL
+  `content` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `cache` (
@@ -31,7 +31,7 @@ CREATE TABLE `garbage` (
   `module` varchar(100) NOT NULL,
   `row_id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `content` text NOT NULL,
+  `content` longtext NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -53,7 +53,7 @@ CREATE TABLE `pages` (
   `url` varchar(150) NOT NULL,
   `redirect` varchar(150) NOT NULL,
   `order` int(11) NOT NULL,
-  `content` text NOT NULL,
+  `content` longtext NOT NULL,
   `active` tinyint(4) NOT NULL,
   `in_menu` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -67,12 +67,12 @@ INSERT INTO `pages` (`id`, `parent`, `name`, `title`, `url`, `redirect`, `order`
 
 CREATE TABLE `seo` (
   `key` varchar(100) NOT NULL,
-  `value` text NOT NULL
+  `value` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `settings` (
   `key` varchar(100) NOT NULL,
-  `value` text NOT NULL
+  `value` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO `settings` (`key`, `value`) VALUES
@@ -86,7 +86,7 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `date_registered` datetime NOT NULL,
   `date_last_visit` datetime NOT NULL,
-  `settings` text NOT NULL,
+  `settings` longtext NOT NULL,
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -129,7 +129,7 @@ CREATE TABLE `versions` (
   `model` varchar(100) NOT NULL,
   `row_id` int(11) NOT NULL,
   `version` int(11) NOT NULL,
-  `content` text NOT NULL,
+  `content` longtext NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
