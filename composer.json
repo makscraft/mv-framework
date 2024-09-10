@@ -20,12 +20,12 @@
         "post-create-project-cmd": "\\Installation::finish",
         "post-autoload-dump": "\\Installation::postAutoloadDump",
         "post-update-cmd": "\\Installation::postUpdate",
-        "database": "\\Installation::commandConfigureDatabase",
-        "migrations": "\\Installation::commandMigrations",
-        "region": "\\Installation::commandRegion",
-        "service": "\\Installation::commandService",
-        "cleanup": "\\Installation::commandCleanup"
-    },    
+        "mv:database": "\\Installation::commandConfigureDatabase",
+        "mv:migrations": "\\Installation::commandMigrations",
+        "mv:region": "\\Installation::commandRegion",
+        "mv:service": "\\Installation::commandService",
+        "mv:cleanup": "\\Installation::commandCleanup"
+    },
     "require": {
         "php": ">=8.0",
         "makscraft/mv-core": "^3"
