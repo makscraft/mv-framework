@@ -1,6 +1,9 @@
 # MV framework
 Content management framework with admin panel for developing internet sites and applications.
 
+<img src="https://github.com/user-attachments/assets/85543c74-5fae-49e3-bb74-2e4ba160a457" width="400">
+<img src="https://github.com/user-attachments/assets/1ee419b3-9ac6-4573-90d7-61a6a5529987" width="400">
+
 Installation via composer
 ---
 ```
