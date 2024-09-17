@@ -14,4 +14,5 @@ Manual installation
 - Download archive from (official site) [GitHub Pages](https://mv-framework.com)
 - Unzip the contents into your project folder.
 - Fill .env file at the root directory.
-- If your project is located not at the domain root, you need to fill APP_FOLDER setting in .env file and RewriteBase value in .hthacces file with the same value like /my/project/.
+- If your project is located not at the domain root, you need to fill **APP_FOLDER** setting in .env file and **RewriteBase** value in .htaccess file with the same value like /my/project/.
+- You may not fill **APP_TOKEN** value in .env file, because later MV will generate random value for you and ask you to put it into .env file.
