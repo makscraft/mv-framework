@@ -17,7 +17,7 @@ composer create-project makscraft/mv-framework project_name
 
 Manual installation
 ---
-- Download archive from (official site)[https://mv-framework.com]
+- Download archive from the [official site](https://mv-framework.com).
 - Unzip the contents into your project folder.
 - Fill the database section in the .env file at the root directory (sqlite is set by default, in this case you don't need to fill anything for start).
 - For mysql database initial dump is located at the **/userfiles/database** directory. Upload it into your database.
