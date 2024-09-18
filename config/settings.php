@@ -14,7 +14,7 @@ $mvMainSettings = [
 'SupportedRegions' => ['en', 'us', 'ru', 'de'],
 
 //Initial version of MV framework (do not change it).
-'Version' => 3.0,
+'Version' => 3.1,
 
 //Allowed data types for models' fields
 'ModelsDataTypes' => ['bool','int','float','char','url','redirect','email','phone','password','text','enum','parent',
