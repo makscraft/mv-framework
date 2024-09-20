@@ -6,8 +6,8 @@ class Seo extends ModelSimple
 	protected $model_elements = [
 		['Title', 'char', 'title', ['help_text' => 'Default value of html meta title for all pages']],
 		['Keywords', 'text', 'keywords', ['help_text' => 'Default value of html meta keywords for all pages']],
-      	['Description', 'text', 'description', ['help_text' => 'Default value of html meta description for all pages']],
-      	['Robots.txt', 'text', 'robots', ['help_text' => 'Content of robots.txt']],
+      		['Description', 'text', 'description', ['help_text' => 'Default value of html meta description for all pages']],
+      		['Robots.txt', 'text', 'robots', ['help_text' => 'Content of robots.txt']],
 		['Meta data in head', 'text', 'meta_head', ['help_text' => 'Meta tags, counters, plugins, verifications']],
 		['Meta date in body', 'text', 'meta_footer', ['help_text' => 'Counters and plugins']]
 	];
