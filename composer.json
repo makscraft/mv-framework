@@ -13,7 +13,7 @@
     "autoload": {
         "classmap": [
         	"models/",
-		    "plugins/"
+		"plugins/"
         ]
     },
     "scripts": {
