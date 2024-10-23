@@ -10,18 +10,18 @@
  
 $mvSetupSettings = [
 
-//Current environment 'production' - logs all errors into /log/ folder, 
+//Current work environment: 'production' - logs all errors into /log/ folder, 
 //'development' - displays all possible errors on the screen.
-//You can use APP_ENV setting in .env file instead.
+//It's recommended to use APP_ENV setting in .env file instead.
 'Mode' => '',
 
 //Current build of the application, increase this value to drop cache in production environment.
 'Build' => 1,
 
-//Set true to display debug panel at the botton of the screen.
+//Set true to display debug panel at the bottom of the screen.
 'DebugPanel' => true,
 
-//After increasing Buld number, during this time MV will check media files update times to refresh the cache.
+//After increasing 'Buld' number, during this time MV will check files update times to refresh the cache.
 'CacheFilesCheckTime' => 3600,
 
 //Database parameters
@@ -36,27 +36,27 @@ $mvSetupSettings = [
 
  //Project server time zone in format like 'Europe/Paris'
  //List of timezones http://php.net/manual/en/timezones.php
- //You can use APP_TIMEZONE setting in .env file instead.
+//It's recommended to use APP_TIMEZONE setting in .env file instead.
 'TimeZone' => '',
 
 //Region for localization see folder ~/adminpanel/i18n/
 //Whole list of supported regions in config/settings.php file, 'SupportedRegions' array
-//You can use APP_REGION setting in .env file instead.
+//It's recommended to use APP_REGION setting in .env file instead.
 'Region' => 'en',
 
 //Domain name of the application must begin with 'http(s)://' (without trailing slash).
-//You can use APP_DOMAIN setting in .env file instead.
+//It's recommended to use APP_DOMAIN setting in .env file instead.
 'DomainName' => '',
 
 //Subfolder of the application (usually '/' on production server).
-//You can use APP_FOLDER setting in .env file instead.
+//It's recommended to use APP_FOLDER setting in .env file instead.
 'MainPath' => '/',
 
 //Name of folder with admin panel. No '/' before or after.
 //To change admin panel url, rename it's directory and change this setting.
 'AdminFolder' => 'adminpanel',
 
-//If true, MV will start the session at the frontend.
+//If true, MV will start the session at the front $mv object.
 'SessionSupport' => true,
 
 //Use HttpOnly mode for cookies.
@@ -65,7 +65,7 @@ $mvSetupSettings = [
 //Enables cache and turns on cache cleaning in admin panel CRUD operartions.
 'EnableCache' => false,
 
-//Files storage path. No '/' before or after.
+//Files storage directory. No '/' before or after.
 'FilesPath' => 'userfiles',
 
 //Special secret code of the application, to make security hashes.
@@ -73,15 +73,15 @@ $mvSetupSettings = [
 'SecretCode' => '',
 
 //Sender's email address, example: 'Name <email@domain.zone>'.
-//You can use EMAIL_FROM setting in .env file instead.
+//It's recommended to use EMAIL_FROM setting in .env file instead.
 'EmailFrom' => '',
 
 //Email sender type, can be 'mail' or 'smtp'.
-//You can use EMAIL_SENDER settings in .env file instead.
+//It's recommended to use EMAIL_SENDER settings in .env file instead.
 'EmailMode' => '',
 
 //SMTP setting for email sender.
-//You can use EMAIL_ settings in .env file instead.
+//You can use EMAIL_... settings in .env file instead.
 'SMTPHost' => '',
 'SMTPPort' => '',
 'SMTPAuth' => true,
@@ -89,6 +89,6 @@ $mvSetupSettings = [
 'SMTPUsername' => '',
 'SMTPPassword' => '',
 
-//Default email signature.
+//Default email signature, you can change it as you like.
 'EmailSignature' => '<p>Message from <a href="{domain}">{domain}</a></p>'
 ];
