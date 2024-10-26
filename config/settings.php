@@ -11,7 +11,7 @@ $mvMainSettings = [
 
 //Supported regional packages for internationalization located at ~adminpanel/i18n/
 //'us' - american, the same as english ('en') exept for date format.
-'SupportedRegions' => ['en', 'us', 'ru', 'de'],
+'SupportedRegions' => ['en', 'us', 'ru', 'de', 'es', 'pt'],
 
 //Initial version of MV framework (do not change it).
 'Version' => 3.1,
