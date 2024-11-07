@@ -12,7 +12,8 @@ return [
                 'in_menu' => 1,
                 'order' => 1,
                 'content' => '<h2>Models</h2>
-                              <p>Models are located at /models/ folder<br><a href="https://mv-framework.com/predefined-models" target="_blank">Read more about models</a></p>
+                              <p>Models are located at /models/ folder<br>
+                              <a href="https://mv-framework.com/predefined-models" target="_blank">Read more about models</a></p>
                               <h2>Views</h2>
                               <p>Views (templates) are located at /views/ folder<br>
                               <a href="https://mv-framework.com/creating-new-template" target="_blank">Read more about views</a></p>
