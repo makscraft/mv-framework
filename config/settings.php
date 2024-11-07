@@ -4,7 +4,7 @@
  * 
  * Main configuration settings array.
  * These values go to Registry object to get the settings from any part of the application.
- * Any value can be taken through Registry :: get('name') method.
+ * Any value can be taken through Registry::get('name') method.
  */
 
 $mvMainSettings = [
