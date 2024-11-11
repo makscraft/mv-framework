@@ -5,7 +5,7 @@
  * Initial settings for setup of the application.
  * If the project uses .env file, these settings will be overriden by the values from .env file. 
  * These values go to Registry object to get the settings from any part of the application.
- * Any value can be taken through Registry :: get('name') method.
+ * Any value can be taken through Registry::get('name') method.
  */
  
 $mvSetupSettings = [
