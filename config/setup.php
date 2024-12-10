@@ -21,6 +21,10 @@ $mvSetupSettings = [
 //Set true to display debug panel at the bottom of the screen.
 'DebugPanel' => true,
 
+//Shows special screen on the front when site is under maintenance.
+//You can type your own text or html to show instead of bool true value.
+'UnderMaintenance' => false,
+
 //After increasing 'Buld' number, during this time MV will check files update times to refresh the cache.
 'CacheFilesCheckTime' => 3600,
 
