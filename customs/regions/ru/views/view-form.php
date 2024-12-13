@@ -50,7 +50,7 @@ include $mv -> views_path.'main-header.php';
 			echo $form -> composeMessage();
 			
 			echo "<h3>Поля для SQL запроса</h3>\n";
-			Debug :: pre($form -> getAllValues());
+			Debug::pre($form -> getAllValues());
 		}
 		else
 			echo $form -> displayErrors();

@@ -9,8 +9,8 @@
  * 		{signature} - common signature from config/settings.php file
  * 
  * Example of use:
- * Email :: setTemplate("name");
- * Email :: send($recipient, $subject, $message);
+ * Email::setTemplate("name");
+ * Email::send($recipient, $subject, $message);
  */
 $email_template = array(
 	"body" => "<body style=\"margin:0; padding:5px 0; font-family: Arial, sans-serif;\" bgcolor=\"#fff\">
