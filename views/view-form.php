@@ -41,9 +41,10 @@ include $mv -> views_path.'main-header.php';
 <main>
 	<section>
 		<h1><?php echo $content -> name; ?></h1>
+		<section class="content editable">
+			<?php echo $content -> content; ?>
+		</section>
 		<?php
-			echo $content -> content;
-			
 			if($form_complete)
 			{
 				echo "<div class=\"form-success\"><p>The form has been successfully completed.</p></div>\n";

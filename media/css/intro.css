@@ -21,50 +21,71 @@ header ul.menu li.active a{color: #1cb596;}
 
 main{margin: 0 auto 50px auto; max-width: 1400px;}
 main a{color: #1cb596; text-decoration: none;}
-main a:hover{text-decoration: underline;}
+main a:hover{text-decoration: none;}
 main h1, main h2, main h3{margin-bottom: 15px;}
 main h1{font-size: 56px; line-height: 66px;}
 main h2{font-size: 56px; line-height: 66px;}
 main h3{font-size: 30px; line-height: 40px;}
 main ul, main ol{margin-bottom: 20px;}
 main li{margin-bottom: 10px; list-style-position: inside;}
-main h1{margin-bottom: 60px;}
+main h1{margin-bottom: 50px;}
 main p{margin-bottom: 15px; line-height: 30px;}
-main p.settings{margin-bottom: 60px;}
+main p.settings{margin-bottom: 50px;}
+main p.settings span{color: #1cb596;}
+main a{border-bottom: 1px solid #1cb59633; padding-bottom: 1px;}
+main a::after{background: #151d2e url(../images/arrow.svg) bottom center no-repeat; width: 24px; height: 24px; margin-left: 5px;
+display: inline-block; content: ''; position: relative; bottom: -7px; padding: 0 0 2px 3px;}
+main a:hover{border-color: transparent;}
 
-main section.grid{display: grid; grid-template-columns: 70% 30%; border-top: 1px solid #333; width: 100%;}
+main section.grid{display: grid; grid-template-columns: 65% 35%; border-top: 1px solid #333; width: 100%;}
 main section.grid > *{border-bottom: 1px solid #333; padding: 60px 3%; display: flex; align-items: center;}
 main section.grid.index > p{display: block;}
-main section.grid h2{counter-increment: step-counter; margin-right: 10%;}
+main section.grid h2{counter-increment: step-counter; padding-right: 10%;}
 main section.grid h2::before{content: counter(step-counter); margin-right: 30%; color: #1cb596; font-size: 18px;
 line-height: 24px; font-weight: normal;}
+main section.content{margin-bottom: 50px;}
 
-form div.field-wrapper{margin-bottom: 15px;}
-form div.field-name{margin-bottom: 3px;}
-form input[type='text'], form select, form textarea{border: 1px solid #777; border-radius: 3px; padding: 7px 10px;
-font-size: 16px;}
-form input[type='text'], form select{width: 300px;}
-form textarea{width: 600px;}
-form button{border: none; border-radius: 3px; cursor: pointer; font-size: 16px; background: #f26061;
-color: #fff; padding: 10px 40px;}
-form input[type='checkbox']{margin-right: 3px;}
+form div.field-wrapper{margin-bottom: 20px;}
+form div.field-name{margin-bottom: 4px;}
+form div.field-name span.required{color: #1cb596;}
+form input[type='text'], form select, form textarea{border: 1px solid #eeeed9; border-radius: 6px; padding: 0 10px;
+background: #151d2e; width: 450px; color: #fff; font-size: 18px;}
+form input[type='text'], form select{height: 48px;}
+form select{background: #151d2e url(../images/select.svg) no-repeat right 12px center; appearance: none;
+cursor: pointer;}
+form textarea{padding: 10px; height: 200px !important;}
+form button{border: none; border-radius: 6px; cursor: pointer; font-size: 16px; background: #1cb596;
+color: #fff; padding: 15px; width: 450px;}
+form input[type='checkbox']{margin-right: 4px;}
 form label{cursor: pointer;}
 form div.buttons{padding-top: 20px;}
-form .image-input{width: 300px; padding: 10px 0;}
+form .image-input{width: 300px; padding: 10px 0; border: 1px solid transparent; border-radius: 6px;}
 form .file-params{margin-bottom: 15px;}
-form .file-params span.delete, form .multiple-files-data span.delete{margin-left: 12px; color: #1464ba; cursor: pointer;}
+form .file-params span.delete, form .multiple-files-data span.delete{margin-left: 12px; color: #1cb596; cursor: pointer;}
 form .multiple-files-data{width: 600px;}
 form .multiple-files-data div.file-element{margin-bottom: 5px;}
 form .multiple-files-data div.file-input{margin-top: 15px;}
 form .form-multi-images-wrapper{display: grid; grid-template-columns: 150px 150px 150px; gap: 15px; margin-bottom: 20px;
 width: fit-content; padding: 15px 0;}
 form .form-multi-images-wrapper > div{display: flex; flex-direction: column; align-items: center;}
-form .form-multi-images-wrapper > div > img{height: 100px; margin-bottom: 3px;}
-form .form-multi-images-wrapper span.delete{color: #1464ba; cursor: pointer;}
+form .form-multi-images-wrapper > div > img{height: 100px; margin-bottom: 3px; max-width: 100%;}
+form .form-multi-images-wrapper span.delete{color: #1cb596; cursor: pointer;}
 
 .hidden{display: none;}
-.error-field > *{border-color: #f26061 !important; background-color: #f9f3d7;}
-div.form-errors, div.form-success{margin: 15px 0; padding: 5px 20px; width: 600px; border-radius: 3px;}
-div.form-errors p, div.form-success p{margin: 5px 0; padding-left: 5px;}
-div.form-errors{background: #f9f3d7; color: #f26061;}
-div.form-success{background: #deee85;}
+.error-field > *{border-color: #ff4343 !important;}
+div.form-errors, div.form-success{margin: 0 0 20px 0; padding: 10px 20px; width: 450px; border-radius: 6px;
+background: #ffffff1a;}
+div.form-errors p, div.form-success p{margin: 0 0 5px 0;}
+div.form-errors p:last-child, div.form-success p:last-child{margin: 0;}
+div.form-errors{color: #ff4343;}
+div.form-success{color: #1cb596;}
+
+@media all and (max-width: 1440px)
+{
+    header, main{margin-left: 20px; margin-right: 20px;}
+}
+
+@media all and (max-width: 600px)
+{
+    header ul.menu{flex-direction: column;}
+}
