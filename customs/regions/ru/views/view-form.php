@@ -18,9 +18,9 @@ $fields = [
 	/*
 	Extra files fields to try.
 
-	['File', 'file', 'file', ['files_folder' => 'new_files']],
-	['Multi files', 'file', 'files', ['files_folder' => 'files_many', 'multiple' => 5]],
-	['Multi images', 'multi_images', 'images', ['files_folder' => 'images_many']],
+	['Файл', 'file', 'file', ['files_folder' => 'new_files']],
+	['Список файлов', 'file', 'files', ['files_folder' => 'files_many', 'multiple' => 5]],
+	['Массив изображений', 'multi_images', 'images', ['files_folder' => 'images_many']],
 	*/
 
 	['Сообщение', 'text', 'message', ['required' => true]],
@@ -38,34 +38,37 @@ if($form -> isValid())
 
 include $mv -> views_path.'main-header.php';
 ?>
-<section class="content">
-	<h1><?php echo $content -> name; ?></h1>
-	<?php
-		echo $content -> content;
-		
-		if($form_complete)
-		{
-			echo "<div class=\"form-success\"><p>Форма успешно заполнена.</p></div>\n";
-			echo "<h3>Сообщение для отправки по email</h3>\n";
-			echo $form -> composeMessage();
-			
-			echo "<h3>Поля для SQL запроса</h3>\n";
-			Debug :: pre($form -> getAllValues());
-		}
-		else
-			echo $form -> displayErrors();
-			
-		if(!$form_complete):
-	?>
-	<form method="post" enctype="multipart/form-data">
-		<?php echo $form -> display(); ?>
-		<div class="buttons">
-			<?php echo $form -> displayTokenCSRF(); ?>
-			<button>Отправить</button>
-		</div>
-	</form>
-	<?php endif; ?>
-</section>
+<main>
+	<section>
+		<h1><?php echo $content -> name; ?></h1>
+		<section class="content editable">
+			<?php echo $content -> content; ?>
+		</section>		
+		<?php
+			if($form_complete)
+			{
+				echo "<div class=\"form-success\"><p>Форма была успешно заполнена.</p></div>\n";
+				echo "<h3>Сообщение для отправки по email</h3>\n";
+				echo $form -> composeMessage();
+				
+				echo "<h3>Поля для SQL запроса</h3>\n";
+				Debug::pre($form -> getAllValues());
+			}
+			else
+				echo $form -> displayErrors();
+				
+			if(!$form_complete):
+		?>
+		<form method="post" enctype="multipart/form-data">
+			<?php echo $form -> display(); ?>
+			<div class="buttons">
+				<?php echo $form -> displayTokenCSRF(); ?>
+				<button>Отправить</button>
+			</div>
+		</form>
+		<?php endif; ?>
+	</section>
+</main>
 <?php
 include $mv -> views_path.'main-footer.php';
 ?>

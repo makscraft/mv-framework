@@ -38,34 +38,37 @@ if($form -> isValid())
 
 include $mv -> views_path.'main-header.php';
 ?>
-<section class="content">
-	<h1><?php echo $content -> name; ?></h1>
-	<?php
-		echo $content -> content;
-		
-		if($form_complete)
-		{
-			echo "<div class=\"form-success\"><p>The form has been successfully completed.</p></div>\n";
-			echo "<h3>Message to be sent by email</h3>\n";
-			echo $form -> composeMessage();
-			
-			echo "<h3>Fields for SQL query</h3>\n";
-			Debug :: pre($form -> getAllValues());
-		}
-		else
-			echo $form -> displayErrors();
-			
-		if(!$form_complete):
-	?>
-	<form method="post" enctype="multipart/form-data">
-		<?php echo $form -> display(); ?>
-		<div class="buttons">
-			<?php echo $form -> displayTokenCSRF(); ?>
-			<button>Submit form</button>
-		</div>
-	</form>
-	<?php endif; ?>
-</section>
+<main>
+	<section>
+		<h1><?php echo $content -> name; ?></h1>
+		<section class="content editable">
+			<?php echo $content -> content; ?>
+		</section>
+		<?php
+			if($form_complete)
+			{
+				echo "<div class=\"form-success\"><p>The form has been successfully completed.</p></div>\n";
+				echo "<h3>Message to be sent by email</h3>\n";
+				echo $form -> composeMessage();
+				
+				echo "<h3>Fields for SQL query</h3>\n";
+				Debug::pre($form -> getAllValues());
+			}
+			else
+				echo $form -> displayErrors();
+				
+			if(!$form_complete):
+		?>
+		<form method="post" enctype="multipart/form-data">
+			<?php echo $form -> display(); ?>
+			<div class="buttons">
+				<?php echo $form -> displayTokenCSRF(); ?>
+				<button>Submit form</button>
+			</div>
+		</form>
+		<?php endif; ?>
+	</section>
+</main>
 <?php
 include $mv -> views_path.'main-footer.php';
 ?>
