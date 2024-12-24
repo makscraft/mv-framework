@@ -1,6 +1,7 @@
 <?php
 /**
- * This code is being implemented before including of any view.
- * Here you can place any PHP code, like checking user authorization, settings checking, etc.
+ * Executes before any view is included.
+ * Use this section for tasks like user authorization checks, configuration validations, or other pre-view logic.
  */
+
 

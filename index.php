@@ -1,22 +1,22 @@
 <?php
 /**
- * MV - content management framework for developing internet sites and applications.
+ * MV - modern content management framework for building websites and applications.
  * 
  * https://mv-framework.com
  * https://mv-framework.ru
  */
 
-//Main autoload file, starting the application
+//Load the autoload file to initialize the application
 require_once 'config/autoload.php';
 
-//Main front object of the application with all models and plugins
+//Create the main Builder object, which manages models, plugins, and core features
 $mv = new Builder();
 
-//File with code, which is implemented before code of each view
+//Include the pre-view script, executed before rendering any views
 include $mv -> views_path.'before-view.php';
 
-//Router determines current route and the view file to include
+//Use the router to determine the current route and include the corresponding view file
 include $mv -> router -> defineRoute();
 
-//Shows debug panel at the bottom if the 'DebugPanel' setting is set to true
+// Display the debug panel at the bottom of the page if 'DebugPanel' is enabled in settings
 $mv -> displayDebugPanel();

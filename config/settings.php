@@ -1,10 +1,10 @@
 <?php
 /**
- * MV - content management framework for developing internet sites and applications.
- * 
+ * MV - Content Management Framework for building websites and applications.
+ *
  * Main configuration settings array.
- * These values go to Registry object to get the settings from any part of the application.
- * Any value can be taken through Registry::get('name') method.
+ * These values are stored in the Registry object, making them accessible from anywhere in the application.
+ * Retrieve any value using the Registry::get('name') method.
  */
 
 $mvMainSettings = [

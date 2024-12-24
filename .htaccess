@@ -2,18 +2,19 @@
 AddDefaultCharset UTF-8
 Options -Indexes
 
-# Mod rewrite enable
+# Enable mod_rewrite module
 RewriteEngine on
 
-# The subdirectory of the application, on production usually /
-# Used if the application is not at the root directory of domain
-# Works together with APP_FOLDER setting from .env file (must be the same)
+# Define the base directory for the application
+# Typically '/' on production
+# Must match the APP_FOLDER setting in the .env file
 RewriteBase /
 
-# Root application directories with no access allowed
+# Restrict direct access to sensitive application directories
 RewriteRule ^(config|core|models|plugins|views|log|customs|vendor)\/.* index.php [L]
 
-# Leads all requests to one front php file, except for media, extra, userfiles and adminpanel directories
+# Route all requests through the main front controller (index.php)
+# Exclude static files in media, extra, userfiles, and adminpanel directories
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule .* index.php [L]

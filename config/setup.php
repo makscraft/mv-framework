@@ -1,11 +1,11 @@
 <?php
 /**
- * MV - content management framework for developing internet sites and applications.
- * 
- * Initial settings for setup of the application.
- * If the project uses .env file, these settings will be overriden by the values from .env file. 
- * These values go to Registry object to get the settings from any part of the application.
- * Any value can be taken through Registry::get('name') method.
+ * MV - Content Management Framework for building websites and applications.
+ *
+ * Initial setup settings for the application.
+ * If the project uses a .env file, these values will be overridden by those from the .env file.
+ * These settings are stored in the Registry object, making them accessible from anywhere in the application.
+ * You can retrieve any value using the Registry::get('name') method.
  */
  
 $mvSetupSettings = [
@@ -29,17 +29,19 @@ $mvSetupSettings = [
 'CacheFilesCheckTime' => 3600,
 
 //Database parameters
-//You can use DATABASE_ settings in .env file instead.
-'DbEngine' => '', // mysql / sqlite
-'DbMode' => 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION', //SQL mode for MySQL engine
-'DbFile' => 'database.sqlite', //File of sqlite database if engine is 'sqlite' location 'userfiles/database/sqlite/'
+//You can use DATABASE_ settings in .env file instead: mysql / sqlite
+'DbEngine' => '',
+//SQL mode for MySQL engine
+'DbMode' => 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION',
+//File of sqlite database if engine is 'sqlite' location 'userfiles/database/sqlite/'
+'DbFile' => 'database.sqlite',
 'DbHost' => '', 
 'DbUser' => '',
 'DbPassword' => '',
 'DbName' => '',
 
- //Project server time zone in format like 'Europe/Paris'
- //List of timezones http://php.net/manual/en/timezones.php
+//Project server time zone in format like 'Europe/Paris'
+//List of timezones http://php.net/manual/en/timezones.php
 //It's recommended to use APP_TIMEZONE setting in .env file instead.
 'TimeZone' => '',
 
