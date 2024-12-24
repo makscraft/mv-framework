@@ -19,7 +19,7 @@ header ul.menu{display: flex; width: 100%; gap: 1.7%; font-size: 16px;}
 header ul.menu li{list-style: none;}
 header ul.menu li.active a{color: #1cb596;}
 
-main{margin: 0 auto 50px auto; max-width: 1400px;}
+main{margin: 0 auto; padding-bottom: 50px; max-width: 1400px;}
 main a{color: #1cb596; text-decoration: none;}
 main a:hover{text-decoration: none;}
 main h1, main h2, main h3{margin-bottom: 15px;}
