@@ -1,6 +1,6 @@
 <?php
 /**
- * MV - modern content management framework for building websites and applications.
+ * MV - content management framework for building websites and applications.
  * 
  * https://mv-framework.com
  * https://mv-framework.ru
@@ -18,5 +18,5 @@ include $mv -> views_path.'before-view.php';
 //Use the router to determine the current route and include the corresponding view file
 include $mv -> router -> defineRoute();
 
-// Display the debug panel at the bottom of the page if 'DebugPanel' is enabled in settings
+//Display the debug panel at the bottom of the page if 'DebugPanel' is enabled in settings
 $mv -> displayDebugPanel();
