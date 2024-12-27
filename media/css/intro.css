@@ -5,11 +5,15 @@
     font-style: normal;
 }
 
+/* Default styles */
 *{margin: 0; padding: 0; box-sizing: border-box;}
 html{background: #151d2e url(../images/intro.png) top right no-repeat; height: 100%;}
 body{font: 18px/24px 'PantonSemiBold'; padding-bottom: 100px; color: #fff; height: 100%; 
 background: url(../images/intro-left.png) top left no-repeat;}
 pre{white-space: break-spaces;}
+.hidden{display: none;}
+
+/* Main structure */
 header{height: 120px; display: flex; align-items: center; color: #fff; margin: 0 auto 50px auto;
 max-width: 1400px;}
 header a.logo{margin-right: 40px;}
@@ -46,6 +50,7 @@ main section.grid h2::before{content: counter(step-counter); margin-right: 30%; 
 line-height: 24px; font-weight: normal;}
 main section.content{margin-bottom: 50px;}
 
+/* Form styles */
 form div.field-wrapper{margin-bottom: 20px;}
 form div.field-name{margin-bottom: 4px;}
 form div.field-name span.required{color: #1cb596;}
@@ -72,7 +77,6 @@ form .form-multi-images-wrapper > div{display: flex; flex-direction: column; ali
 form .form-multi-images-wrapper > div > img{height: 100px; margin-bottom: 3px; max-width: 100%;}
 form .form-multi-images-wrapper span.delete{color: #1cb596; cursor: pointer;}
 
-.hidden{display: none;}
 .error-field > *{border-color: #ff4343 !important;}
 div.form-errors, div.form-success{margin: 0 0 20px 0; padding: 10px 20px; width: 450px; border-radius: 6px;
 background: #ffffff1a;}
@@ -80,6 +84,25 @@ div.form-errors p, div.form-success p{margin: 0 0 5px 0;}
 div.form-errors p:last-child, div.form-success p:last-child{margin: 0;}
 div.form-errors{color: #ff4343;}
 div.form-success{color: #1cb596;}
+
+/* Styles for Workshop examples */
+main.workshop a::after{display: none;}
+main.workshop section.items-list{display: flex; flex-direction: column; gap: 30px; margin-bottom: 30px;}
+main.workshop section.items-list > *{max-width: 800px;}
+main.workshop section.items-list a:has(img){display: inline-block;}
+main.workshop section.items-list a > img{display: block;}
+main.workshop section.items-list div.brief{margin-bottom: 10px;}
+main.workshop section div.date{font-size: 16px; margin-bottom: 10px;}
+
+main.workshop section.item-details > img{margin-bottom: 20px;}
+main.workshop section.item-details section.content{max-width: 800px;}
+
+main.workshop div.paginator{display: flex; gap: 10px; align-items: center;}
+main.workshop div.paginator span{margin-right: 5px;}
+main.workshop div.paginator a{padding: 2px 0; border-radius: 4px; min-width: 30px; text-align: center;
+border: none;}
+main.workshop div.paginator a:hover{background: #30384a;}
+main.workshop div.paginator a.active{background: #1cb596; color: #fff;}
 
 @media all and (max-width: 1440px)
 {
