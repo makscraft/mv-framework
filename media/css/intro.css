@@ -86,16 +86,21 @@ div.form-errors{color: #ff4343;}
 div.form-success{color: #1cb596;}
 
 /* Styles for Workshop examples */
+main.workshop pre{margin-bottom: 30px; max-width: 800px;}
 main.workshop a::after{display: none;}
 main.workshop section.items-list{display: flex; flex-direction: column; gap: 30px; margin-bottom: 30px;}
 main.workshop section.items-list > *{max-width: 800px;}
-main.workshop section.items-list a:has(img){display: inline-block;}
+main.workshop section.items-list a:has(img){display: inline-block; border: none;}
 main.workshop section.items-list a > img{display: block;}
 main.workshop section.items-list div.brief{margin-bottom: 10px;}
 main.workshop section div.date{font-size: 16px; margin-bottom: 10px;}
-
 main.workshop section.item-details > img{margin-bottom: 20px;}
 main.workshop section.item-details section.content{max-width: 800px;}
+
+main.workshop section.items-gallery{display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px;
+max-width: 800px;}
+main.workshop section.items-gallery a{display: block; padding: 0; border: none;}
+main.workshop section.items-gallery a img{display: block; max-width: 100%;}
 
 main.workshop div.paginator{display: flex; gap: 10px; align-items: center;}
 main.workshop div.paginator span{margin-right: 5px;}
@@ -103,6 +108,8 @@ main.workshop div.paginator a{padding: 2px 0; border-radius: 4px; min-width: 30p
 border: none;}
 main.workshop div.paginator a:hover{background: #30384a;}
 main.workshop div.paginator a.active{background: #1cb596; color: #fff;}
+main.workshop div.previous-next{display: flex; justify-content: space-between; max-width: 800px;}
+main.workshop div.previous-next a.next{margin-left: auto;}
 
 @media all and (max-width: 1440px)
 {
