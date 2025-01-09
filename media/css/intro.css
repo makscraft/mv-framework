@@ -96,10 +96,14 @@ main.workshop section.items-list{display: flex; flex-direction: column; gap: 30p
 main.workshop section.items-list > *{max-width: 800px;}
 main.workshop section.items-list a:has(img){display: inline-block; border: none;}
 main.workshop section.items-list a > img{display: block;}
+main.workshop section.items-list > div .name{text-align: center; padding: 12px;}
 main.workshop section.items-list div.brief{margin-bottom: 10px;}
 main.workshop section div.date{font-size: 16px; margin-bottom: 10px;}
 main.workshop section.item-details > img{margin-bottom: 20px;}
 main.workshop section.item-details section.content{max-width: 800px;}
+main.workshop section.columns{display: flex; justify-content: space-between;}
+main.workshop section.columns section.left{width: 300px;}
+main.workshop section.columns section.right{width: calc(100% - 300px - 5%);}
 
 main.workshop section.items-list.gallery{display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;}
 main.workshop section.items-list.gallery > div{display: flex; flex-direction: column; align-items: flex-start; 
@@ -122,6 +126,17 @@ main.workshop div.paginator a:hover{background: #30384a;}
 main.workshop div.paginator a.active{background: #1cb596; color: #fff;}
 main.workshop div.previous-next{display: flex; justify-content: space-between; max-width: 800px;}
 main.workshop div.previous-next a.next{margin-left: auto;}
+
+main.workshop div.breadcrumbs{margin-bottom: 20px; font-size: 14px;}
+main.workshop div.breadcrumbs a{margin-right: 8px;}
+main.workshop div.breadcrumbs a::after{content: '/'; background: none; display: inline; position: static;}
+main.workshop div.breadcrumbs span{color: #aaa;}
+
+main.workshop ul.catalog-tree{}
+main.workshop ul.catalog-tree li{list-style: none; margin-bottom: 10px;}
+main.workshop ul.catalog-tree li:last-child{margin: 0;}
+main.workshop ul.catalog-tree li.open > a{color: #aaa;}
+main.workshop ul.catalog-tree ul{margin: 10px 0 10px 25px;}
 
 @media all and (max-width: 1440px)
 {
