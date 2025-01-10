@@ -94,20 +94,26 @@ main.workshop pre{margin-bottom: 30px; max-width: 800px;}
 main.workshop a::after{display: none;}
 main.workshop section.items-list{display: flex; flex-direction: column; gap: 30px; margin-bottom: 30px;}
 main.workshop section.items-list > *{max-width: 800px;}
-main.workshop section.items-list a:has(img){display: inline-block; border: none;}
+main.workshop section.items-list h2{font-size: 18px; line-height: 24px;}
+main.workshop section.items-list.gallery a{display: inline-block; border: none;}
 main.workshop section.items-list a > img{display: block;}
 main.workshop section.items-list > div .name{text-align: center; padding: 12px;}
 main.workshop section.items-list div.brief{margin-bottom: 10px;}
 main.workshop section div.date{font-size: 16px; margin-bottom: 10px;}
 main.workshop section.item-details > img{margin-bottom: 20px;}
 main.workshop section.item-details section.content{max-width: 800px;}
+main.workshop section.item-details div.extra-images{display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+gap: 10px; max-width: 640px; margin-bottom: 20px;}
+main.workshop section.item-details div.extra-images img{max-width: 100%; display: block;}
+main.workshop section.item-details div.price{margin-bottom: 30px; text-align: left;}
 main.workshop section.columns{display: flex; justify-content: space-between;}
 main.workshop section.columns section.left{width: 300px;}
 main.workshop section.columns section.right{width: calc(100% - 300px - 5%);}
 
 main.workshop section.items-list.gallery{display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;}
-main.workshop section.items-list.gallery > div{display: flex; flex-direction: column; align-items: flex-start; 
+main.workshop section.items-list.gallery > div{display: flex; flex-direction: column; align-items: center; 
 gap: 15px}
+main.workshop section.items-list.gallery.catalog{grid-template-columns: 1fr 1fr 1fr;}
 main.workshop section.items-list.faq div.question{background: #ffffff1a; border-radius: 6px; padding: 10px 3%;
 margin-bottom: 10px;}
 main.workshop section.items-list.faq div.date{margin: 0 3% 20px 3%;}
@@ -132,11 +138,33 @@ main.workshop div.breadcrumbs a{margin-right: 8px;}
 main.workshop div.breadcrumbs a::after{content: '/'; background: none; display: inline; position: static;}
 main.workshop div.breadcrumbs span{color: #aaa;}
 
-main.workshop ul.catalog-tree{}
 main.workshop ul.catalog-tree li{list-style: none; margin-bottom: 10px;}
 main.workshop ul.catalog-tree li:last-child{margin: 0;}
 main.workshop ul.catalog-tree li.open > a{color: #aaa;}
 main.workshop ul.catalog-tree ul{margin: 10px 0 10px 25px;}
+
+main.workshop section.filtration{max-width: 1100px;}
+main.workshop form.filters{display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+margin-bottom: 30px;}
+main.workshop form.filters > div{width: 23%;}
+main.workshop form.filters > div:first-child{width: 8%;}
+main.workshop form.filters > div:has(.interval){width: 30%;}
+main.workshop form.filters > div:has(.interval) div.filter-name{margin-left: 30px;}
+main.workshop form.filters > div:has(.interval) div.filter-input{display: flex;
+justify-content: flex-end; align-items: center;}
+main.workshop form.filters button{width: 120px; align-self: flex-end;}
+main.workshop form.filters{font-size: 15px; color: #1cb596;}
+main.workshop form.filters input[type='text'], main.workshop form.filters select{max-width: 100%;
+color: #1cb596; outline: none;}
+main.workshop form.filters > div:has(.interval) input{width: 40%;}
+main.workshop form.filters .filter-interval-name{margin-right: 8px;}
+main.workshop form.filters #filter-price-from{margin-right: 3%;}
+
+main.workshop section.filtration > table{width: 100%; border-collapse: collapse;}
+main.workshop section.filtration > table th{text-align: left; background: #ffffff1a; padding: 10px 2%;
+color: #1cb596;}
+main.workshop section.filtration > table td{padding: 10px 2%;}
+main.workshop section.filtration > table tr:nth-child(2n + 1) td{background: #ffffff1a;}
 
 @media all and (max-width: 1440px)
 {
@@ -149,10 +177,15 @@ main.workshop ul.catalog-tree ul{margin: 10px 0 10px 25px;}
 {
     main section.grid{grid-template-columns: 1fr;}
     main section.grid > *{padding: 30px 2%;}
-    h1, h2{font-size: 40px !important; line-height: 45px !important}
+    h1, h2{font-size: 30px !important; line-height: 36px !important; margin-bottom: 20px !important;}
     main section.grid h2{border: none; margin: 0; padding-bottom: 0;}
     main section.grid h2::before{margin-right: 10%;}
     main h3{margin-bottom: 25px; font-size: 26px; line-height: 30px;}
+}
+
+@media all and (max-width: 640px)
+{
+    main.workshop section.item-details img{max-width: 100%;}
 }
 
 @media all and (max-width: 600px)
