@@ -8,7 +8,7 @@
 /* Default styles */
 *{margin: 0; padding: 0; box-sizing: border-box;}
 html{background: #151d2e url(../images/intro.png) top right no-repeat; height: 100%;}
-body{font: 18px/24px 'PantonSemiBold'; padding-bottom: 100px; color: #fff; height: 100%; 
+body{font: 18px/24px 'PantonSemiBold', sans-serif; padding-bottom: 100px; color: #fff; height: 100%; 
 background: url(../images/intro-left.png) top left no-repeat;}
 pre{white-space: break-spaces;}
 .hidden{display: none;}
