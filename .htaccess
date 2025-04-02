@@ -2,6 +2,10 @@
 AddDefaultCharset UTF-8
 Options -Indexes
 
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
 # Enable mod_rewrite module
 RewriteEngine on
 
