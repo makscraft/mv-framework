@@ -29,6 +29,7 @@ $mvFrontendRoutes = [
 '/' => 'view-index.php',
 'e404' => 'view-404.php',
 'fallback' => 'view-default.php',
+'/robots.txt' => 'seo/view-robots.php',
 
 '/form' => 'view-form.php'
 ];
