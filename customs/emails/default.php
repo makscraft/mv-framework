@@ -26,14 +26,15 @@ $email_template = [
 	",
 
 	'css' => [
-		'*'      => 'font-family:Arial; font-size:14px; color:#333',
+		'*'      => 'font-family:Arial; font-size:14px; color:#333;',
 		'a'      => 'color:#0057c2;', 
-		'h1'     => 'font-weight:normal; margin:0 0 20px 0; font-size:24px; line-height:25px; padding:0',
-		'p'      => 'margin:0 0 15px 0; line-height:16px',
+		'h1'     => 'font-weight:normal; margin:0 0 20px 0; font-size:24px; line-height:25px; padding:0;',
+		'p'      => 'margin:0 0 15px 0; line-height:16px;',
 		'ul'     => 'margin:0 0 9px 12px; padding:0; list-style:square outside;',
+		'ol'     => 'margin:0 0 9px 12px; padding:0; list-style-position:outside;',
 		'li'     => 'padding:0 0 5px 0; margin:0 0 0 12px;',
 		'table'  => 'margin:15px 0; border:none; border-collapse:collapse; border-spacing:0;',
-		'th'     => 'text-align:left; background:#eee; font-size:13px; font-weight:bold; padding:10px 20px; vertical-align:top',
-		'td'     => 'text-align:left; padding:10px 20px; text-align:left; border-bottom:1px solid #d6d6ce; vertical-align:top'
+		'th'     => 'text-align:left; background:#eee; font-size:13px; font-weight:bold; padding:10px 20px; vertical-align:top;',
+		'td'     => 'text-align:left; padding:10px 20px; text-align:left; border-bottom:1px solid #d6d6ce; vertical-align:top;'
 	]
 ];
