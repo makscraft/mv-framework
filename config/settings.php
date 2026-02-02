@@ -13,25 +13,26 @@ $mvMainSettings = [
 //'us' - american, the same as english ('en') exept for date format.
 'SupportedRegions' => ['en', 'us', 'ru', 'de', 'es', 'pt'],
 
-//Initial version of MV framework (do not change it).
-'Version' => 3.2,
+//Initial version of MV framework core makscraft/mv-core (do not change it).
+'Version' => 3.4,
 
 //Allowed data types for models' fields
-'ModelsDataTypes' => ['bool','int','float','char','url','redirect','email','phone','password','text','enum','parent',
-					  'order','date','date_time','image','multi_images','file','many_to_one','many_to_many','group'],
+'ModelsDataTypes' => [
+	'bool','int','float','char','url','redirect','email','phone','password','text','enum','parent',
+	'order','date','date_time','image','multi_images','file','many_to_one','many_to_many','group'
+],
 
  //All allowed types of files for uploading.
-'AllowedFiles' => ['gif', 'jpg', 'jpeg', 'png', 'svg', 'webp', 'zip', 'rar', 'gzip', 'txt', 'doc', 'docx', 'rtf', 
-                   'xls','xlsx', 'csv', 'pdf'],
+'AllowedFiles' => ['gif','jpg','jpeg','png','svg','webp','zip','rar','gzip','txt','doc','docx','rtf','xls','xlsx','csv','pdf'],
 
 //All allowed types of images to for uploading.
-'AllowedImages' => ['gif', 'jpg', 'jpeg', 'png', 'svg', 'webp'],
+'AllowedImages' => ['gif','jpg','jpeg','png','svg','webp'],
 
 //Quality of .jpg images created by GD functions when resize.
 'JpgQuality' => 90,
 
 //Mime types to check for uploaded images
-'DefaultImagesMimeTypes' => ['image/jpeg', 'image/gif', 'image/png', 'image/svg+xml', 'image/webp'],
+'DefaultImagesMimeTypes' => ['image/jpeg','image/gif','image/png','image/svg+xml','image/webp'],
 
 //Max allowed file size of any type of file, excluding images (in bytes).
 'MaxFileSize' => 1048576 * 3, 
@@ -62,12 +63,12 @@ $mvMainSettings = [
 'AutoLoginLifeTime' => 3600 * 24 * 31 * 3,
 
 //Forbidden (reserved) names of models fields.
-'ForbiddenFieldsNames' => ['page','done','pager-limit','sort-field','sort-order', 'multi-action','multi-value',
-						   'version','continue','restore','edit'],
+'ForbiddenFieldsNames' => [
+	'page','done','pager-limit','sort-field','sort-order','multi-action','multi-value','version','continue','restore','edit'
+],
 			
 //Forbidden names of models.
-'ForbiddenModelsNames' => ['model','settings','users_logins','users_passwords',
-						   'users_rights','users_sessions','versions'],
+'ForbiddenModelsNames' => ['model','settings','users_logins','users_passwords','users_rights','users_sessions','versions','cache'],
 								
 //Maximum execution time of data processing during csv files uploading in admin panel.
 'CsvUploadTimeLimit' => 180,
