@@ -23,4 +23,5 @@
 		<?php echo $mv -> pages -> displayMenu(-1); ?>
 		<li><a href="<?php echo Registry::get('AdminPanelPath'); ?>" target="_blank"><?php echo I18n::locale('admin-panel'); ?></a></li>
 	</ul>
+	<a class="github" href="https://github.com/makscraft/mv-framework" target="_blank"></a>	
 </header>

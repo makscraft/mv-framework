@@ -14,15 +14,15 @@ pre{white-space: break-spaces;}
 .hidden{display: none;}
 
 /* Main structure */
-header{height: 120px; display: flex; align-items: center; color: #fff; margin: 0 auto 50px auto;
+header{height: 120px; display: flex; gap: 5%; align-items: center; color: #fff; margin: 0 auto 50px auto;
 max-width: 1400px;}
-header a.logo{margin-right: 40px;}
-header a.logo img{display: block; width: 90px;}
+header a.logo img{display: block;}
 header a{color: #fff; text-decoration: none;}
 header ul.menu{display: flex; width: 100%; gap: 1.7%; font-size: 16px;}
 header ul.menu li{list-style: none;}
 header ul.menu li.active a{color: #1cb596;}
-
+header a.github{background: url(../images/github.svg) no-repeat center; width: 50px; height: 50px; background-size: contain;
+cursor: pointer;}
 main{margin: 0 auto; padding-bottom: 50px; max-width: 1400px;}
 main a{color: #1cb596; text-decoration: none;}
 main a:hover{text-decoration: none;}
@@ -49,6 +49,11 @@ main section.grid h2{counter-increment: step-counter; padding-right: 10%;}
 main section.grid h2::before{content: counter(step-counter); margin-right: 30%; color: #1cb596; font-size: 18px;
 line-height: 24px; font-weight: normal;}
 main section.content{margin-bottom: 50px;}
+
+main section.banner{margin-bottom: 50px;}
+main section.banner > a{display: inline-flex; margin: 0; padding: 0; border: none;}
+main section.banner > a > img{display: block; max-width: 100%;}
+main section.banner > a::after{display: none;}
 
 /* Form styles */
 form div.field-wrapper{margin-bottom: 20px;}
@@ -170,7 +175,7 @@ main.workshop section.filtration > table tr:nth-child(2n + 1) td{background: #ff
 {
     header, main{margin-left: 20px; margin-right: 20px;}
     header ul.menu{gap: 2.5%;}
-    header, main h1, main p.settings{margin-bottom: 30px;}
+    header, main h1, main p.settings, main section.banner{margin-bottom: 30px;}
 }
 
 @media all and (max-width: 800px)
@@ -191,6 +196,7 @@ main.workshop section.filtration > table tr:nth-child(2n + 1) td{background: #ff
 @media all and (max-width: 600px)
 {
     body{font-size: 16px; line-height: 20px;}
+    header{padding-top: 10px;}
     header ul.menu{flex-direction: column; gap: 5px;}
     form input[type='text'], form select, form textarea, form button, div.form-errors, div.form-success{
     width: 100% !important;}

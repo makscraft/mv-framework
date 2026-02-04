@@ -19,6 +19,12 @@ include $mv -> views_path.'main-header.php';
 	Login: <?php echo $user -> login; ?><br>
 	Password: <?php echo Service::checkHash('root', $user -> password) ? 'root' : '******'; ?></p>
 
+	<section class="banner">
+		<a href="https://github.com/makscraft/workshop-mv" target="_blank">
+			<img src="<?php echo $mv -> media_path; ?>/images/workshop.png" alt="MV workshop" />
+		</a>
+	</section>
+
 	<section class="grid index">
 		<?php echo $content -> content; ?>
 	</section>
