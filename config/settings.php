@@ -14,7 +14,7 @@ $mvMainSettings = [
 'SupportedRegions' => ['en', 'us', 'ru', 'de', 'es', 'pt'],
 
 //Initial version of MV framework core makscraft/mv-core (do not change it).
-'Version' => 3.4,
+'Version' => 3.42,
 
 //Allowed data types for models' fields
 'ModelsDataTypes' => [
