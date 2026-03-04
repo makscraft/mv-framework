@@ -2,7 +2,7 @@
 AddDefaultCharset UTF-8
 Options -Indexes
 
-<FilesMatch "^\.">
+<FilesMatch "^\.|composer|license|readme">
     Require all denied
 </FilesMatch>
 

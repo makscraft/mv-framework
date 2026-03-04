@@ -3,5 +3,5 @@ RewriteEngine off
 
 # Denies execution of any kind of scripts
 <Files ~ "\.(php[2-5]?|cgi|pl|fcgi|fpl|phtml|shtml|asp|jsp)$">
-    Deny from all
+    Require all denied
 </Files>
