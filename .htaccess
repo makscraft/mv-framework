@@ -2,6 +2,7 @@
 AddDefaultCharset UTF-8
 Options -Indexes
 
+# Denies access to sensitive files
 <FilesMatch "^\.|composer|license|readme">
     Require all denied
 </FilesMatch>
