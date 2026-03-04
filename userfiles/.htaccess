@@ -1,3 +1,6 @@
+# Denies directory listing
+Options -Indexes
+
 # Allowes the http access to files
 RewriteEngine off
 
@@ -5,3 +8,8 @@ RewriteEngine off
 <Files ~ "\.(php[2-5]?|cgi|pl|fcgi|fpl|phtml|shtml|asp|jsp)$">
     Require all denied
 </Files>
+
+# Protection against MIME type spoofing (XSS attacks)
+<IfModule mod_headers_c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
