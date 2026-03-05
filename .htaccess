@@ -2,11 +2,6 @@
 AddDefaultCharset UTF-8
 Options -Indexes
 
-# Denies access to sensitive files
-<FilesMatch "^\.|composer|license|readme">
-    Require all denied
-</FilesMatch>
-
 # Enable mod_rewrite module
 RewriteEngine on
 
@@ -15,8 +10,10 @@ RewriteEngine on
 # Must match the APP_FOLDER setting in the .env file
 RewriteBase /
 
-# Restrict direct access to sensitive application directories
+# Restrict direct access to sensitive application directories and files
 RewriteRule ^(config|core|models|plugins|views|log|customs|vendor)\/.* index.php [L]
+RewriteRule ^(composer|readme|license) index.php [NC,L]
+RewriteRule ^\. index.php [R=404,L]
 
 # Route all requests through the main front controller (index.php)
 # Exclude static files in media, extra, userfiles, and adminpanel directories
