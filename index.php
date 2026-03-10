@@ -15,8 +15,15 @@ $mv = new Builder();
 //Include the pre-view script, executed before rendering any views
 include $mv -> views_path.'before-view.php';
 
-//Use the router to determine the current route and include the corresponding view file
-include $mv -> router -> defineRoute();
+try{
+    //Use the router to determine the current route and include the corresponding view file
+    include $mv -> router -> defineRoute();
+}
+catch(FrontHttpStatusException $exception)
+{
+    //Process http status exception if fired
+    include $mv -> handleFrontHttpStatusException($exception);
+}
 
 //Display the debug panel at the bottom of the page if 'DebugPanel' is enabled in settings
 $mv -> displayDebugPanel();
