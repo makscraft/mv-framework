@@ -64,7 +64,8 @@ $mvMainSettings = [
 
 //Forbidden (reserved) names of models fields.
 'ForbiddenFieldsNames' => [
-	'page','done','pager-limit','sort-field','sort-order','multi-action','multi-value','version','continue','restore','edit'
+	'page','done','pager-limit','sort-field','sort-order','multi-action','multi-value','version','continue','restore','edit',
+	'id','ids','query','action','model','view','ajax'
 ],
 			
 //Forbidden names of models.
