@@ -69,7 +69,10 @@ $mvMainSettings = [
 ],
 			
 //Forbidden names of models.
-'ForbiddenModelsNames' => ['model','settings','users_logins','users_passwords','users_rights','users_sessions','versions','cache'],
+'ForbiddenModelsNames' => [
+	'model','settings','users','user','users_logins','users_passwords','users_rights','users_sessions','versions','cache',
+	'cache_clean','log','db','registry','i18n'
+],
 								
 //Maximum execution time of data processing during csv files uploading in admin panel.
 'CsvUploadTimeLimit' => 180,
