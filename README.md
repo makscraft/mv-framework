@@ -1,8 +1,12 @@
-# MV framework
-Content management framework with admin panel for developing internet sites and applications.
+# MV
+**Lightweight PHP Framework with Auto-Generated Admin Panel**
+- Define your models and run migrations.
+- Get a production-ready admin interface instantly.
+- Override anything when you need to.
 
-<img src="https://github.com/user-attachments/assets/85543c74-5fae-49e3-bb74-2e4ba160a457" width="400">
-<img src="https://github.com/user-attachments/assets/1ee419b3-9ac6-4573-90d7-61a6a5529987" width="400">
+<img width="49%" src="https://github.com/user-attachments/assets/303d884f-7356-48e2-a3c6-e8402b8ae360" />
+<img width="49%" src="https://github.com/user-attachments/assets/1e5ceb75-69d2-4077-9416-df1441f718ab" />
+
 
 Installation via composer
 ---
