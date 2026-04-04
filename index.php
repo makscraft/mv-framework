@@ -1,6 +1,7 @@
 <?php
 /**
  * MV - content management framework for building websites and applications.
+ * MIT License
  * 
  * https://mv-framework.com
  * https://mv-framework.ru

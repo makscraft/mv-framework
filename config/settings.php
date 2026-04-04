@@ -53,7 +53,7 @@ $mvMainSettings = [
 'NewPasswordLifeTime' => 10800 / 3,
 
  //After 3 incorrect passwords when login in admin panel the ip of user is added into special list 
- // and during the next login attempts the users will have to fill captcha before this time lasts.
+ //and during the next login attempts the users will have to fill captcha before this time lasts.
 'LoginCaptchaLifeTime' => 3600,
 
 //Time interval in seconds from last hit of user when we show that user is online.

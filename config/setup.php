@@ -10,11 +10,6 @@
  
 $mvSetupSettings = [
 
-//Current work environment: 'production' - logs all errors into /log/ folder, 
-//'development' - displays all possible errors on the screen.
-//It's recommended to use APP_ENV setting in .env file instead.
-'Mode' => '',
-
 //Current build of the application, increase this value to drop cache in production environment.
 'Build' => 1,
 
@@ -27,6 +22,11 @@ $mvSetupSettings = [
 
 //After increasing 'Buld' number, during this time MV will check files update times to refresh the cache.
 'CacheFilesCheckTime' => 3600,
+
+//Current work environment: 'production' - logs all errors into /log/ folder, 
+//'development' - displays all possible errors on the screen.
+//It's recommended to use APP_ENV setting in .env file instead.
+'Mode' => '',
 
 //Database parameters
 //You can use DATABASE_ settings in .env file instead: mysql / sqlite
@@ -41,7 +41,7 @@ $mvSetupSettings = [
 'DbName' => '',
 
 //Project server time zone in format like 'Europe/Paris'
-//List of timezones http://php.net/manual/en/timezones.php
+//List of timezones https://php.net/manual/en/timezones.php
 //It's recommended to use APP_TIMEZONE setting in .env file instead.
 'TimeZone' => '',
 
@@ -56,7 +56,7 @@ $mvSetupSettings = [
 
 //Subfolder of the application (usually '/' on production server).
 //It's recommended to use APP_FOLDER setting in .env file instead.
-'MainPath' => '/',
+'MainPath' => '',
 
 //Name of folder with admin panel. No '/' before or after.
 //To change admin panel url, rename it's directory and change this setting.
