@@ -90,10 +90,10 @@ $mvSetupSettings = [
 //You can use EMAIL_... settings in .env file instead.
 'SMTPHost' => '',
 'SMTPPort' => '',
-'SMTPAuth' => true,
-'SMTPEncryption' => '',
 'SMTPUsername' => '',
 'SMTPPassword' => '',
+'SMTPSecure' => '',
+'SMTPOptions' => [],
 
 //Default email signature, you can change it as you like.
 'EmailSignature' => '<p>Message from <a href="{domain}">{domain}</a></p>'
